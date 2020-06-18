@@ -36,6 +36,6 @@ https://drive.google.com/file/d/1Mxy-YPI8GNH0gKxb9xhueWqHShrQ4DVR/view?usp=shari
 ### 機能一覧
 https://docs.google.com/spreadsheets/d/1UgK-6l38k5T81XjcTIn7CHnGRkB_sBXS5xQWAVhWmks/edit#gid=0
 
-##その他
+## その他
 ※自分が実現したいサイトの大部分以上の機能を備えたサイトを確認しましたので下記URLよりご確認をお願いします。
 https://booklog.jp/
