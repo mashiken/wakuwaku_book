@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_06_25_074355) do
+ActiveRecord::Schema.define(version: 2020_06_25_083641) do
 
   create_table "active_admin_comments", force: :cascade do |t|
     t.string "namespace"
@@ -36,6 +36,39 @@ ActiveRecord::Schema.define(version: 2020_06_25_074355) do
     t.datetime "updated_at", null: false
     t.index ["email"], name: "index_admin_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_admin_users_on_reset_password_token", unique: true
+  end
+
+  create_table "book_shelves", force: :cascade do |t|
+    t.integer "user_id", null: false
+    t.string "book_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "favorites", force: :cascade do |t|
+    t.integer "user_id", null: false
+    t.integer "recommended_user_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "recommended_books", force: :cascade do |t|
+    t.integer "user_id", null: false
+    t.integer "recommended_user_id", null: false
+    t.string "book_id", null: false
+    t.string "title", null: false
+    t.string "text", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "reviews", force: :cascade do |t|
+    t.integer "user_id", null: false
+    t.string "book_id", null: false
+    t.string "title", null: false
+    t.string "text", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "users", force: :cascade do |t|

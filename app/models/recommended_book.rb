@@ -1,0 +1,2 @@
+class RecommendedBook < ApplicationRecord
+end
