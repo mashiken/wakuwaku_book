@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 Rails.application.routes.draw do
   get 'book_shelves/create'
   get 'book_shelves/destroy'

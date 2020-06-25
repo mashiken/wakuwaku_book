@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class RecommendedBooksController < ApplicationController
   def index
   end
