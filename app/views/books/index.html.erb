@@ -1,31 +1,16 @@
-<h2>書籍検索結果</h2>
+<h2>書籍検索</h2>
 <!-- 書籍検索機能 楽天APIを使用 -->
-<!-- 検索窓の設置 -->
+<!-- 検索フォームの設置 -->
 <%= form_with url: books_path, method: :get, local: true do |form| %>
+
+  <!-- 検索条件 書籍検索or著者名検索 -->
+  <%= form.radio_button :search_condition, :title,  class:"radio_button" %>
+　<%= form.label :search_condition, "書籍タイトルから検索", {value: :title, style: "display: inline-block;", class:"radio_button_text"} %>
+  <%= form.radio_button :search_condition, :author,  class:"radio_button" %>
+　<%= form.label :search_condition, "著者名から検索", {value: :author, style: "display: inline-block;", class:"radio_button_text"} %>
+
   <%= form.text_field :keyword, class: "form-control" %>
-  <%= form.submit '本題名を検索', class: "form-control btn btn-success" %>
+  <%= form.submit '検索', class: "form-control btn btn-success" %>
 <% end %>
 
-<table class=' table table-hover table-inverse order_table_text'>
-	<thead>
-		<tr>
-			<th>商品画像</th>
-			<th>書籍タイトル / カナ</th>
-			<th>著者名 / カナ</th>
-			<th>出版社名</th>
-			<th>発売日</th>
-		<tr>
-	</thead>
-
-	<% @books.each do |book| %>
-	<tbody>
-		<tr>
-			<td><%= link_to (image_tag(book.medium_image_url)), book.item_url %></td>
-			<td><%= link_to book.title, book_path(book.isbn) %> <%= book.title_kana %></td>
-			<td><%= book.author %> <%= book.author_kana %></td>
-			<td><%= book.publisher_name %></td>
-			<td><%= book.sales_date %></td>
-		<tr>
-	</tbody>
-	<% end %>
-</table>
+<%= render "books/book", books: @books  %>
