@@ -66,3 +66,5 @@ gem 'activeadmin'
 gem 'devise'
 gem 'rubocop'
 gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]
+gem 'rakuten_web_service'
+gem 'dotenv-rails', groups: [:development, :test]

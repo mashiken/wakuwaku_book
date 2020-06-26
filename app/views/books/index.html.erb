@@ -1,2 +1,31 @@
-<h1>Books#index</h1>
-<p>Find me in app/views/books/index.html.erb</p>
+<h2>書籍検索結果</h2>
+<!-- 書籍検索機能 楽天APIを使用 -->
+<!-- 検索窓の設置 -->
+<%= form_with url: books_path, method: :get, local: true do |form| %>
+  <%= form.text_field :keyword, class: "form-control" %>
+  <%= form.submit '本題名を検索', class: "form-control btn btn-success" %>
+<% end %>
+
+<table class=' table table-hover table-inverse order_table_text'>
+	<thead>
+		<tr>
+			<th>商品画像</th>
+			<th>書籍タイトル / カナ</th>
+			<th>著者名 / カナ</th>
+			<th>出版社名</th>
+			<th>発売日</th>
+		<tr>
+	</thead>
+
+	<% @books.each do |book| %>
+	<tbody>
+		<tr>
+			<td><%= link_to (image_tag(book.medium_image_url)), book.item_url %></td>
+			<td><%= link_to book.title, book_path(book.isbn) %> <%= book.title_kana %></td>
+			<td><%= book.author %> <%= book.author_kana %></td>
+			<td><%= book.publisher_name %></td>
+			<td><%= book.sales_date %></td>
+		<tr>
+	</tbody>
+	<% end %>
+</table>
