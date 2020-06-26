@@ -1,18 +1,18 @@
 # frozen_string_literal: true
 
 class Users::RegistrationsController < Devise::RegistrationsController
+  before_action :configure_permitted_parameters, if: :devise_controller?
   # before_action :configure_sign_up_params, only: [:create]
   # before_action :configure_account_update_params, only: [:update]
-  binding.pry
   # GET /resource/sign_up
   # def new
   #   super
   # end
 
   # POST /resource
-  # def create
-  #   super
-  # end
+   def create
+     super
+   end
 
   # GET /resource/edit
   # def edit
@@ -38,6 +38,10 @@ class Users::RegistrationsController < Devise::RegistrationsController
   #   super
   # end
 
+  #def thanks
+    #redirect_to user_path(current_user.id)
+  #end
+
   # protected
 
   # If you have extra params to permit, append them to the sanitizer.
@@ -51,12 +55,20 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # end
 
   # The path used after sign up.
+
+  #sign_up後マイページへ遷移
   def after_sign_up_path_for(resource)
     user_path(current_user.id)
   end
 
   # The path used after sign up for inactive accounts.
-   #def after_inactive_sign_up_path_for(resource)
-     #books_path
-   #end
+    #def after_inactive_sign_up_path_for(resource)
+     #users_thanks_path
+    #end
+
+  protected
+
+  def configure_permitted_parameters #deviseに元々設定の無いカラムにUserテーブル登録の許可を出す。
+    devise_parameter_sanitizer.permit(:sign_up,keys:[:family_name, :given_name, :family_name_kana, :given_name_kana, :phone_number])
+  end
 end
