@@ -1,2 +1,22 @@
-<h1>Books#show</h1>
-<p>Find me in app/views/books/show.html.erb</p>
+<h2>書籍詳細</h2>
+
+<% @book_details.each do |book_detail| %>
+	<%= image_tag(book_detail.large_image_url) %>
+
+	<table class=' table table-hover table-inverse order_table_text'>
+		<tr><td><%= book_detail.title %> <%= book_detail.title_kana %></td></tr>
+		<tr><td><%= book_detail.contents %></td></tr>
+		<tr><td><%= book_detail.author %> <%= book_detail.author_kana %></td></tr>
+		<tr><td><%= book_detail.publisher_name %></td></tr>
+    <tr><td><%= book_detail.size %></td></tr>
+    <tr><td><%= book_detail.item_caption %></td></tr>
+    <tr><td><%= book_detail.sales_date %></td></tr>
+  </table>
+
+	<%= form_with url: book_shelves_path, method: :post, local: true do |f| %>
+    <%= f.hidden_field :book_id, :value => book_detail.isbn %>
+    <%= f.submit "本棚へ追加" %>
+  <% end %>
+
+  <%= link_to "楽天で本を買う" , book_detail.item_url, class:"btn btn-success" %>
+<% end %>
