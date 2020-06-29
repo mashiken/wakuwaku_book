@@ -1,0 +1,22 @@
+AllCops:
+  # Rubyのバージョンを指定
+  TargetRubyVersion: 2.5.7
+  # 除外するファイル
+  Exclude:
+    - vendor/bundle/**/*
+    - bin/*
+    - db/**/*
+    - config/**/*
+    - Gemfile
+    - app/admin/dashboard.rb
+
+Style/FrozenStringLiteralComment:
+  Enabled: false
+Documentation:
+  Enabled: false
+Metrics/LineLength:
+  Enabled: false
+Style/ClassAndModuleChildren:
+  Enabled: false
+Style/EmptyMethod:
+  Enabled: false
