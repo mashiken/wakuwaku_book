@@ -2,6 +2,8 @@
 
 class ReviewsController < ApplicationController
   def index
+    @reviews = Review.where(user_id: params[:id])
+    book_details = RakutenWebService::Books::Book.search(isbn: params[:id])
   end
 
   def create

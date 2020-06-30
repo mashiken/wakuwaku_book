@@ -1,2 +1,12 @@
 <h1>Reviews#index</h1>
 <p>Find me in app/views/reviews/index.html.erb</p>
+
+
+<% @reviews.each do |reviews| %>
+　<%= link_to(user_path(user_id), class: 'list-content') do %>
+		<table class=' table table-hover table-inverse order_table_text'>
+			<tr><td><%= review.title %></td></tr>
+			<tr><td><%= review.text %></td></tr>
+	  </table>
+  <% end %>
+<% end %>
