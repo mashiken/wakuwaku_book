@@ -20,3 +20,11 @@
 
   <%= link_to "楽天で本を買う" , book_detail.item_url, class:"btn btn-success" %>
 <% end %>
+
+<% if books.present? %>
+  <!-- レビュー投稿を表示 -->
+  <%= render partial: "new_review", locals: { book_details: @book_details, review: @review %>
+<% elsif %>
+  <!-- レビュー一覧を表示 -->
+  <%= render partial: "review", reviews: @reviews  %>
+<% end %>
