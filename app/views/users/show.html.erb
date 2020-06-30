@@ -12,6 +12,9 @@
 	<% books.each do |book| %>
 	  <div><%= link_to (image_tag(book.medium_image_url)), book.item_url %></div>
 		<div><%= book.title %></div>
+		<%= if current_user %>
+		  <div><%= link_to "本棚から削除する", customers_emend_path %></div>
+		<% end %>
 	<% end %>
 <% end %>
 
@@ -34,7 +37,7 @@
   	<td><%= @user.age %></td>
   </tr>
   <tr>
-  	<td>電話番号</td>
+  	<td>職業</td>
   	<td><%= @user.profession %></td>
   </tr>
   <tr>

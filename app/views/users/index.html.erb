@@ -1,2 +1,10 @@
-<h1>Users#index</h1>
-<p>Find me in app/views/users/index.html.erb</p>
+
+<% @users.each do |user| %>
+　<%= link_to(user_path(user_id), class: 'list-content') do %>
+		<table class=' table table-hover table-inverse order_table_text'>
+			<tr><td><%= @user.family_name %><%= @user.given_name %></td></tr>
+			<tr><td><%= @user.gender %> / <%= @user.age %> / <%= @user.profession %> </td></tr>
+			<tr><td><%= @user.profile %></td></tr>
+	  </table>
+  <% end %>
+<% end %>
