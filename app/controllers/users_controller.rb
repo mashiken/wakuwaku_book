@@ -3,7 +3,7 @@
 class UsersController < ApplicationController
 
   def index
-    @user = User.all
+    @users = User.all
   end
 
   def show
@@ -16,9 +16,9 @@ class UsersController < ApplicationController
   end
 
   def update
-    @user = current_customer
+    @user = User.find_by(params[:id])
     if @user.update(user_params)
-      redirect_to users_path(current_user.id)
+      redirect_to user_path(current_user.id)
     else
       render "edit"
     end
