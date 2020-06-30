@@ -1,2 +1,38 @@
-<h1>Users#show</h1>
-<p>Find me in app/views/users/show.html.erb</p>
+
+<p class="text-danger"><%= flash[:notice] %></p>
+<h4>登録情報</h4>
+<!-- ユザーの各種書籍レビュー等の一覧 -->
+<button><%= link_to "書籍レビュー", reviews_path %></button>
+<button><%= link_to "オススメ数", recommended_books_path %></button>
+<button><%= link_to "オススメされ数", recommended_books_path %></button>
+
+<!-- 本棚に登録した中身の一覧 -->
+<% @book_shelves.each do |book_shelf| %>
+	<% books = RakutenWebService::Books::Book.search(isbn: book_shelf.book_id.to_i) %>
+	<% books.each do |book| %>
+	  <div><%= link_to (image_tag(book.medium_image_url)), book.item_url %></div>
+		<div><%= book.title %></div>
+		<% if @user.id == current_user.id %>
+		  <div><%= link_to "本棚から削除する", book_shelf_path(book_shelf.id) %></div>
+		<% end %>
+	<% end %>
+<% end %>
+
+<!-- ユザープロフィール覧 -->
+<table class="table table-inverse">
+  <tr><td>氏名:<%= @user.family_name %><%= @user.given_name %></td></tr>
+  <tr><td>カナ:<%= @user.family_name_kana %><%= @user.given_name_kana %></td></tr>
+  <tr><td>性別:<%= @user.gender %></td></tr>
+  <tr><td>年齢:<%= @user.age %></td></tr>
+  <tr><td>職業:<%= @user.profession %></td></tr>
+  <tr><td>プロフィール:<%= @user.profile %></td></tr>
+</table>
+
+<!-- ユザー関連 その他 -->
+<button><%= link_to "このユザーに書籍をオススメする", confirm_recommended_books_path %></button>
+
+<% if @user.id == current_user.id %>
+  <button><%= link_to "プロフィール情報を編集する", edit_user_path(current_user) %></button>
+<% end %>
+
+<button><%= link_to "wakuwaku-bookを退会する", confirm_users_path %></button>

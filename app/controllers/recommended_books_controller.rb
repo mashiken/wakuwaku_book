@@ -7,6 +7,9 @@ class RecommendedBooksController < ApplicationController
   def create
   end
 
+  def confirm
+  end
+
   def finish
   end
 
