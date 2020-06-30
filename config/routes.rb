@@ -22,6 +22,7 @@ Rails.application.routes.draw do
   end
   #オススメ書籍routes
   resources :recommended_books, only: [:index,:create,:destroy] do
+    get :confirm, on: :collection
     get :finish, on: :collection
   end
   #ユザーroutes
