@@ -1,5 +1,9 @@
 
 <% reviews.each do |review| %>
-  <%= review.title %>
-  <%= review.text %>
+  <table class=' table table-hover table-inverse order_table_text'>
+  	<tr><td>-------------------------</td></tr>
+		<tr><td>タイトル:<%= review.title %></td></tr>
+		<tr><td>本文:<%= review.text %></td></tr>
+　</table>
+<%= link_to '削除する',  review_path(review), method: :delete, remote: true, class: "btn btn-md btn-danger" %>
 <% end %>

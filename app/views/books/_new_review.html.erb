@@ -6,6 +6,6 @@
   <%= f.text_area :text %>
   <% book_details.each do |book_detail| %>
 	  <%= f.hidden_field :book_id, :value => book_detail.isbn %>
-	<% end %>
+  <% end %>
   <%= f.submit "レビューを送信" %>
 <% end %>

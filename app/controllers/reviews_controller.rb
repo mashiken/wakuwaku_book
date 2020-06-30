@@ -16,6 +16,9 @@ class ReviewsController < ApplicationController
   end
 
   def destroy
+    @review = Review.find_by(params[:id])
+    @review.destroy
+    redirect_to book_path(@review.book_id)
   end
 
   private
