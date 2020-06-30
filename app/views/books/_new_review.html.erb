@@ -1,0 +1,11 @@
+
+<%= form_with model: review, method: :post, local: true do |f| %>
+  <%= f.label :title, "レビュータイトル" %>
+  <%= f.text_field :title %>
+  <%= f.label :title, "レビュー文" %>
+  <%= f.text_area :text %>
+  <% book_details.each do |book_detail| %>
+	  <%= f.hidden_field :book_id, :value => book_detail.isbn %>
+  <% end %>
+  <%= f.submit "レビューを送信" %>
+<% end %>
