@@ -1,0 +1,38 @@
+
+<!-- オススメ書籍検索画面 -->
+<%= form_with url: confirm_recommended_book_path(@recommended_user), method: :get, local: true do |form| %>
+  <!-- 宛名 -->
+  <div><%= @recommended_user.family_name %><%= @recommended_user.given_name %>さんへ</div>
+  <!-- 書籍選択方法をラジオボタンで選ぶ -->
+  <h4>オススメ書籍を選ぶ</h4>
+  <%= form.radio_button :recommended, :shilf,  class:"radio_button" %>
+　<%= form.label :recommended, "本棚書籍からオススメ", {value: :title, style: "display: inline-block;", class:"radio_button_text"} %>
+  <%= form.radio_button :recommended, :review,  class:"radio_button" %>
+　<%= form.label :recommended, "レビュー一覧からオススメ", {value: :review, style: "display: inline-block;", class:"radio_button_text"} %>
+  <%= form.radio_button :recommended, :search,  class:"radio_button" %>
+　<%= form.label :recommended, "オススメしたい書籍を検索する", {value: :search, style: "display: inline-block;", class:"radio_button_text"} %>
+  <%= form.submit '決定', class: "form-control btn btn-success" %>
+<% end %>
+
+<!-- 本棚から選ぶ場合 -->
+<% if params[:recommended] == "shilf" %>
+  <%= render partial: "recommended_books/book_shelves", locals: { recommended_user: @recommended_user, book_shelves: @book_shelves } %>
+<!-- レビューから選ぶ場合 -->
+<% elsif params[:recommended] == "review" %>
+  <%= render partial: "recommended_books/review", locals: { recommended_user: @recommended_user, reviews: @reviews } %>
+<!-- オススメ書籍を検索する場合 -->
+<% elsif params[:recommended] == "search" %>
+  <!-- 検索フォーム -->
+  <%= form_with url: confirm_recommended_book_path(@recommended_user), method: :get, local: true do |form| %>
+	  <!-- 検索条件 書籍検索or著者名検索 -->
+	  <%= form.radio_button :search_condition, :title,  class:"radio_button" %>
+	　<%= form.label :search_condition, "書籍タイトルから検索", {value: :title, style: "display: inline-block;", class:"radio_button_text"} %>
+	  <%= form.radio_button :search_condition, :author,  class:"radio_button" %>
+	　<%= form.label :search_condition, "著者名から検索", {value: :author, style: "display: inline-block;", class:"radio_button_text"} %>
+　　<%= form.hidden_field :recommended, :value => "search" %><!-- 書籍選択方法”search”をこのフォーム送信でも使用 -->
+
+	  <%= form.text_field :keyword, class: "form-control" %>
+	  <%= form.submit '検索', class: "form-control btn btn-success" %>
+  <% end %>
+  <%= render partial: "recommended_books/search", locals: { recommended_user: @recommended_user, books: @books } %>
+<% end %>

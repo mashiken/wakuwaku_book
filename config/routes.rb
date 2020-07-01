@@ -22,12 +22,12 @@ Rails.application.routes.draw do
   end
   #オススメ書籍routes
   resources :recommended_books, only: [:index,:create,:destroy] do
-    get :confirm, on: :collection
-    get :finish, on: :collection
+    get :confirm, on: :member
+    get :finish, on: :member
   end
   #ユザーroutes
   resources :users, only: [:index,:show,:edit,:update] do
-    get :confirm, on: :collection
-    put :hide, on: :collection
+    get :confirm, on: :member
+    put :hide, on: :member
   end
 end

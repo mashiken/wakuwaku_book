@@ -33,7 +33,7 @@
 <!-- ユザー関連 その他 -->
 <% if @user.id == current_user.id %>
   <button><%= link_to "プロフィール情報を編集する", edit_user_path(current_user) %></button>
-  <button><%= link_to "wakuwaku-bookを退会する", confirm_users_path %></button>
+  <button><%= link_to "wakuwaku-bookを退会する", confirm_user_path(current_user) %></button>
 <% else %>
-  <button><%= link_to "このユザーに書籍をオススメする", confirm_recommended_books_path %></button>
+  <button><%= link_to "このユザーに書籍をオススメする", confirm_recommended_book_path(@user.id) %></button>
 <% end %>
