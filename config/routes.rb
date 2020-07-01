@@ -13,7 +13,7 @@ Rails.application.routes.draw do
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   #本棚routes
-  resources :book_shelves, only: [:create, :destroy]
+  resources :book_shelves, only: [:new, :index,:show,:create, :destroy]
   #書籍検索/詳細routes
   resources :books, only: [:index,:show]
   #書籍レビューroutes/いいねroutesネスト

@@ -7,18 +7,20 @@
 <button><%= link_to "オススメされ数", recommended_books_path %></button>
 
 <!-- 本棚に登録した中身の一覧 -->
+<h4>MY 本棚</h4>
 <% @book_shelves.each do |book_shelf| %>
 	<% books = RakutenWebService::Books::Book.search(isbn: book_shelf.book_id.to_i) %>
 	<% books.each do |book| %>
-	  <div><%= link_to (image_tag(book.medium_image_url)), book.item_url %></div>
+	  <div><%= link_to (image_tag(book.medium_image_url)), book_path(book_shelf.book_id.to_i) %></div>
 		<div><%= book.title %></div>
 		<% if @user.id == current_user.id %>
-		  <div><%= link_to "本棚から削除する", book_shelf_path(book_shelf.id) %></div>
+		  <div><%= link_to "本棚から削除する",  book_shelf_path(id: book_shelf.id), method: :delete, remote: true, class: "btn btn-md btn-danger" %></div>
 		<% end %>
 	<% end %>
 <% end %>
 
 <!-- ユザープロフィール覧 -->
+<h4>プロフィール</h4>
 <table class="table table-inverse">
   <tr><td>氏名:<%= @user.family_name %><%= @user.given_name %></td></tr>
   <tr><td>カナ:<%= @user.family_name_kana %><%= @user.given_name_kana %></td></tr>
