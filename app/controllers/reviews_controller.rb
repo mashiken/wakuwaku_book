@@ -1,13 +1,14 @@
 # frozen_string_literal: true
-require 'pry'
 class ReviewsController < ApplicationController
-  def index
+
+  def show
+    @user = User.find(params[:id])
     @reviews = Review.where(user_id: params[:id])
-    book_details = RakutenWebService::Books::Book.search(isbn: params[:id])
+    @recommended = RecommendedBook.where(user_id: params[:id])
+    @recommended_user = RecommendedBook.where(recommended_user_id: params[:id])
   end
 
   def create
-    binding.pry
   	@review = Review.new(reviews_params)
   	@review.user_id = current_user.id
   	if @review.save

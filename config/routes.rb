@@ -17,11 +17,11 @@ Rails.application.routes.draw do
   #書籍検索/詳細routes
   resources :books, only: [:index,:show]
   #書籍レビューroutes/いいねroutesネスト
-  resources :reviews, only: [:index,:create,:edit, :update, :destroy] do
+  resources :reviews, only: [:create,:show,:edit, :update, :destroy] do
     resource :favorites, only: [:create,:destroy]
   end
   #オススメ書籍routes
-  resources :recommended_books, only: [:index,:create,:destroy] do
+  resources :recommended_books, only: [:show,:create,:destroy] do
     get :confirm, on: :member
     get :finish, on: :member
   end

@@ -1,10 +1,8 @@
 
 <p class="text-danger"><%= flash[:notice] %></p>
 <h4>登録情報</h4>
-<!-- ユザーの各種書籍レビュー等の一覧 -->
-<button><%= link_to "書籍レビュー", reviews_path %></button>
-<button><%= link_to "オススメ数", recommended_books_path %></button>
-<button><%= link_to "オススメされ数", recommended_books_path %></button>
+<!-- ユザーに関するの書籍レビュー/おすすめ数へのリンク -->
+<%= render partial: "users/link_index",locals: { reviews: @reviews, recommended: @recommended, recommended_user: @recommended_user, books: @books } %>
 
 <!-- 本棚に登録した中身の一覧 -->
 <h4>MY 本棚</h4>

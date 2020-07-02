@@ -1,8 +1,6 @@
-require "pry"
 class BookShelvesController < ApplicationController
-  
+
   def create
-  	    binding.pry
 		book_shelf = BookShelf.new(book_shelves_params)
 		book_shelves = BookShelf.where(user_id: current_user.id)
 

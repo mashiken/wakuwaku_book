@@ -1,11 +1,23 @@
 # frozen_string_literal: true
-require 'pry'
 class RecommendedBooksController < ApplicationController
-  def index
+
+  def show
+    @user = User.find(params[:id])
+    @reviews = Review.where(user_id: params[:id])
+    @recommended = RecommendedBook.where(user_id: params[:id])
+    @recommended_user = RecommendedBook.where(recommended_user_id: params[:id])
+
+    if params[:recommended_patarn] == "1"
+      #オススメしたユーザを取得
+      @recommended_book = RecommendedBook.where(user_id: params[:id])
+    elsif params[:recommended_patarn] == "2"
+      #オススメされたユーザを取得
+      @recommended_book = RecommendedBook.where(recommended_user_id: params[:id])
+    end
   end
 
   def confirm
-    #オススメされたユザーIDを取得
+    #オススメされたユーザIDを取得
     @recommended_user = User.find(params[:id])
     #MY本棚から書籍を選ぶ場合
     @book_shelves = BookShelf.where(user_id: current_user.id)
@@ -23,7 +35,7 @@ class RecommendedBooksController < ApplicationController
   end
 
   def finish
-    #オススメされたユザーIDを取得
+    #オススメされたユーザIDを取得
     @recommended_user = User.find(params[:id])
     @book_details = RakutenWebService::Books::Book.search(isbn: params[:book_id])
     @recommended_book = RecommendedBook.new

@@ -8,6 +8,10 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
+    @reviews = Review.where(user_id: params[:id])
+    @recommended = RecommendedBook.where(user_id: params[:id])
+    @recommended_user = RecommendedBook.where(recommended_user_id: params[:id])
+
     @book_shelves = BookShelf.where(user_id: params[:id])
   end
 

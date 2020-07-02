@@ -1,0 +1,4 @@
+
+<button><%= link_to "書籍レビュー #{ reviews.count }件", review_path(params[:id]) %></button>
+<button><%= link_to "オススメ数 #{recommended.count}件", recommended_book_path(params[:id], recommended_patarn: 1) %></button>
+<button><%= link_to "オススメされ数 #{recommended_user.count}件", recommended_book_path(params[:id], recommended_patarn: 2) %></button>
