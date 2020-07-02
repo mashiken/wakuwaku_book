@@ -1,4 +1,26 @@
+
+<h2>ようこそ、わくわくブックへ</h2>
+<p>1.会員登録無しで書籍の検索とレビューを元に購入が出来ます。</p>
+<p>2.会員登録する事でマイページを持つ事が出来、書籍に対するレビューが可能です。</p>
+<p>3.また、自分が読んだ書籍を他のユザーに対してオススメする事も出来ます。</p>
+<p>4.同時にマイページを充実させる事により、他のユザーからあなたに合った書籍をオススメされる場合もあります。</p>
+
+<h3>さっそく検索する</h3>
+<p>下のフォームより、検索してみましょう！</p>
+<p>1.ラジオボタンにて、「書籍タイトル」か「著者名」のどちらかに、チェックを入れましょう。</p>
+<p>2.フォーム空欄に検索したいワードを打ち込み、検索ボタンを押しましょう。</p>
 <%= form_with url: books_path, method: :get, local: true do |form| %>
+
+  <!-- 検索条件 書籍検索or著者名検索 -->
+  <%= form.radio_button :search_condition, :title,  class:"radio_button" %>
+　<%= form.label :search_condition, "書籍タイトル", {value: :title, style: "display: inline-block;", class:"radio_button_text"} %>
+  <%= form.radio_button :search_condition, :author,  class:"radio_button" %>
+　<%= form.label :search_condition, "著者名", {value: :author, style: "display: inline-block;", class:"radio_button_text"} %>
+
   <%= form.text_field :keyword, class: "form-control" %>
-  <%= form.submit '本題名を検索', class: "form-control btn btn-success" %>
+  <%= form.submit '検索', class: "form-control btn btn-success" %>
 <% end %>
+
+<h3>さっそく会員登録/ログインをする</h3>
+<%= link_to "会員登録", new_user_registration_path, class: "btn btn-success col-xs-10 col-xs-offset-1 sign_up" %>
+<%= link_to "ログイン", new_user_session_path, class: "btn btn-info col-xs-10 col-xs-offset-1 sign_in" %>
