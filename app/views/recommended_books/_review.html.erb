@@ -1,9 +1,9 @@
 <% reviews.each do |review| %>
 	<% books = RakutenWebService::Books::Book.search(isbn: review.book_id.to_i) %>
   <% books.each do |book| %>
-		  <div><%= link_to (image_tag(book.medium_image_url)), book.item_url %> <%= book.title %></div>
+		<div><%= link_to (image_tag(book.medium_image_url)), book.item_url %> <%= book.title %></div>
   <% end %>
 	<div><%= review.title %></div>
 	<div><%= review.text %></div>
-  <%= link_to "書籍決定",  finish_recommended_book_path(recommended_user.id), class: "btn btn-md btn-danger" %>
+  <%= link_to "書籍決定",  finish_recommended_book_path(id: recommended_user.id, book_id: review.book_id), class: "btn btn-md btn-danger" %>
 <% end %>

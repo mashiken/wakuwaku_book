@@ -1,5 +1,5 @@
 # frozen_string_literal: true
-
+require 'pry'
 class ReviewsController < ApplicationController
   def index
     @reviews = Review.where(user_id: params[:id])
@@ -7,6 +7,7 @@ class ReviewsController < ApplicationController
   end
 
   def create
+    binding.pry
   	@review = Review.new(reviews_params)
   	@review.user_id = current_user.id
   	if @review.save
