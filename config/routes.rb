@@ -27,7 +27,7 @@ Rails.application.routes.draw do
   end
   #ユザーroutes
   resources :users, only: [:index,:show,:edit,:update] do
-    get :confirm, on: :member
-    put :hide, on: :member
+    get :confirm, on: :collection
+    put :hide, on: :collection
   end
 end

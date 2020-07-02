@@ -32,6 +32,15 @@ class UsersController < ApplicationController
   end
 
   def hide
+    @user = current_user
+    #is_vaildカラムをfalseへupdate
+    if @user.update(is_valid: false)
+       reset_session
+       flash[:notice] = "ありがとうございました。またのご利用を心よりお待ちしております。"
+       redirect_to root_path
+    else
+       render user_path
+    end
   end
 
   private
