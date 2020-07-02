@@ -13,7 +13,7 @@
     <tr><td><%= book_detail.sales_date %></td></tr>
   </table>
 
-	<%= form_with model: @book_shelf, url: book_shelves_path(book_id: book_detail.isbn), method: :post, local: true do |f| %>
+	<%= form_with model: @book_shelf, method: :post, local: true do |f| %>
     <%= f.hidden_field :book_id, :value => book_detail.isbn %>
     <%= f.submit "本棚へ追加" %>
   <% end %>
