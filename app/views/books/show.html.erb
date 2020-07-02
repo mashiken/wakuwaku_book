@@ -2,10 +2,10 @@
 
 <% @book_details.each do |book_detail| %>
 	<%= image_tag(book_detail.large_image_url) %>
+  <%= book_detail.title %> <%= book_detail.title_kana %>
 
-	<table class=' table table-hover table-inverse order_table_text'>
-		<tr><td><%= book_detail.title %> <%= book_detail.title_kana %></td></tr>
-		<tr><td><%= book_detail.contents %></td></tr>
+	<%= book_detail.title %> <%= book_detail.title_kana %>
+  <%= book_detail.contents %></td></tr>
 		<tr><td><%= book_detail.author %> <%= book_detail.author_kana %></td></tr>
 		<tr><td><%= book_detail.publisher_name %></td></tr>
     <tr><td><%= book_detail.size %></td></tr>

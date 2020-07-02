@@ -24,7 +24,7 @@
 					<td><%= book.author %> <%= book.author_kana %></td>
 					<td><%= book.publisher_name %></td>
 					<td><%= book.sales_date %></td>
-					<td><%= link_to "書籍決定",  finish_recommended_book_path(id: recommended_user.id), class: "btn btn-md btn-danger" %></td>
+					<td><%= link_to "書籍決定",  finish_recommended_book_path(id: recommended_user.id, book_id: book.isbn), class: "btn btn-md btn-danger" %></td>
 				<tr>
 			</tbody>
 	  <% end %>

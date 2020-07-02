@@ -1,2 +1,19 @@
-<h1>RecommendedBooks#finish</h1>
-<p>Find me in app/views/recommended_books/finish.html.erb</p>
+<h4>オススメ書籍 確認フォーム</h4>
+ <!-- 宛名 -->
+<div><%= @recommended_user.family_name %><%= @recommended_user.given_name %>さんへ</div>
+<%= form_with model: @recommended_book , method: :post, local: true do |form| %>
+
+  <% @book_details.each do |book_detail| %>
+	　<%= image_tag(book_detail.large_image_url) %>
+	　<%= book_detail.title %> <%= book_detail.title_kana %>
+	  <%= form.hidden_field :aa, :value => book_detail.isbn %>
+  <% end %>
+
+  <%= form.label :title, "おすすめタイトル" %>
+  <%= form.text_field :title, autofocus: true %>
+  <%= form.label :text, "おすすめ文" %>
+  <%= form.text_area :text, autofocus: true %>
+
+  <%= form.hidden_field :bb, :value => @recommended_user.id %>
+	<%= form.submit '送信', class: "form-control btn btn-success" %>
+<% end %>
