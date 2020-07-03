@@ -2,7 +2,7 @@
 <!-- オススメ書籍検索画面 -->
 <%= form_with url: confirm_recommended_book_path(@recommended_user), method: :get, local: true do |form| %>
   <!-- 宛名 -->
-  <div><%= @recommended_user.family_name %><%= @recommended_user.given_name %>さんへ</div>
+  <div><%= @recommended_user.nickname %>さんへ</div>
   <!-- 書籍選択方法をラジオボタンで選ぶ -->
   <h4>オススメ書籍を選ぶ</h4>
   <%= form.radio_button :recommended, :shilf,  class:"radio_button" %>

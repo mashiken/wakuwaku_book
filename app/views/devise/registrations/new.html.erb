@@ -8,26 +8,13 @@
   <%= render "devise/shared/error_messages", resource: resource %>
   <!--名前を入力-->
   <div class="field">
-    <%= f.label :family_name, "(姓)" %>
-    <%= f.text_field :family_name, autofocus: true %>
-    <%= f.label :given_name, "(名)" %>
-    <%= f.text_field :given_name, autofocus: true %>
-  </div>
-　<!--名前(カナ)を入力-->
-  <div class="field">
-    <%= f.label :family_name_kana, "(セイ)" %>
-    <%= f.text_field :family_name_kana, autofocus: true %>
-    <%= f.label :given_name_kana, "(メイ)" %>
-    <%= f.text_field :given_name_kana, autofocus: true %>
+    <%= f.label :nickname, "ニックネーム" %>
+    <%= f.text_field :nickname, autofocus: true %>
   </div>
 
   <div class="field">
     <%= f.label :email, "メールアドレス" %><br />
     <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
-  </div>
-  <div class="field">
-    <%= f.label :phone_number, "電話番号" %><br />
-    <%= f.telephone_field :phone_number, autofocus: true, autocomplete: "電話番号" %>
   </div>
   <div class="field">
     <%= f.label :password, "パスワード" %>

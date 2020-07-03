@@ -69,6 +69,6 @@ class Users::RegistrationsController < Devise::RegistrationsController
   protected
 
   def configure_permitted_parameters # deviseに元々設定の無いカラムにUserテーブル登録の許可を出す。
-    devise_parameter_sanitizer.permit(:sign_up, keys: %i[family_name given_name family_name_kana given_name_kana phone_number])
+    devise_parameter_sanitizer.permit(:sign_up, keys: %i[nickname])
   end
 end

@@ -1,6 +1,6 @@
 <h4>オススメ書籍 確認フォーム</h4>
  <!-- 宛名 -->
-<div><%= @recommended_user.family_name %><%= @recommended_user.given_name %>さんへ</div>
+<div><%= @recommended_user.nickname %>さんへ</div>
 <%= form_with model: @recommended_book , method: :post, local: true do |form| %>
 
   <% @book_details.each do |book_detail| %>

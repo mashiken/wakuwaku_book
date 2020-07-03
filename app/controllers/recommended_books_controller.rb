@@ -47,9 +47,9 @@ class RecommendedBooksController < ApplicationController
     recommended_book = RecommendedBook.new(recommended_book_params)
     recommended_book.user_id = current_user.id
     if recommended_book.save
-      redirect_to action: :show and return
+      redirect_to user_path(current_user) and return
     else
-      redirect_to action: :finish and return
+      render :finish and return
     end
   end
 

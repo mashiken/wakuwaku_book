@@ -21,8 +21,7 @@
 <h4>プロフィール</h4>
 <div><%= attachment_image_tag @user, :image, size: "100x100", format: "jpg" %></div>
 <table class="table table-inverse">
-  <tr><td>氏名:<%= @user.family_name %><%= @user.given_name %></td></tr>
-  <tr><td>カナ:<%= @user.family_name_kana %><%= @user.given_name_kana %></td></tr>
+  <tr><td>名前:<%= @user.nickname %></td></tr>
   <tr><td>性別:<%= @user.gender %></td></tr>
   <tr><td>年齢:<%= @user.age %></td></tr>
   <tr><td>職業:<%= @user.profession %></td></tr>

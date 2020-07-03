@@ -4,16 +4,8 @@
     <%= f.attachment_field :image %>
   </div>
   <div class="field">
-    <%= f.label :family_name, "(姓)" %>
-    <%= f.text_field :family_name, autofocus: true %>
-    <%= f.label :given_name, "(名)" %>
-    <%= f.text_field :given_name, autofocus: true %>
-  </div>
-  <div class="field">
-    <%= f.label :family_name_kana, "(セイ)" %>
-    <%= f.text_field :family_name_kana, autofocus: true %>
-    <%= f.label :given_name_kana, "(メイ)" %>
-    <%= f.text_field :given_name_kana, autofocus: true %>
+    <%= f.label :nickname, "ニックネーム" %>
+    <%= f.text_field :nickname, autofocus: true %>
   </div>
   <div class="field">
     <%= f.label :gender, "性別(未記入でも大丈夫です。)" %>

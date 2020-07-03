@@ -1,6 +1,6 @@
 <h4>書籍レビュー一覧</h4>
 
-<div><%= @user.family_name %><%= @user.given_name %>さんのレビュー</div>
+<div><%= @user.nickname %>さんのレビュー</div>
 
 <!-- ユザーに関するの書籍レビュー/おすすめ数へのリンク -->
 <%= render partial: "users/link_index", locals: { reviews: @reviews, recommended: @recommended, recommended_user: @recommended_user, books: @books } %>

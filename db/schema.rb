@@ -66,7 +66,7 @@ ActiveRecord::Schema.define(version: 2020_07_03_052332) do
     t.integer "user_id", null: false
     t.string "book_id", null: false
     t.string "title", null: false
-    t.string "text", null: false
+    t.text "text", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -77,14 +77,10 @@ ActiveRecord::Schema.define(version: 2020_07_03_052332) do
     t.string "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
-    t.string "family_name", null: false
-    t.string "given_name", null: false
-    t.string "family_name_kana", null: false
-    t.string "given_name_kana", null: false
+    t.string "nickname", null: false
     t.string "gender"
     t.integer "age"
     t.string "profession"
-    t.string "phone_number", null: false
     t.text "profile"
     t.boolean "is_valid", default: true, null: false
     t.datetime "created_at", null: false
