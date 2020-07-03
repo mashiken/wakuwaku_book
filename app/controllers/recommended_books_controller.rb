@@ -1,7 +1,9 @@
 # frozen_string_literal: true
+
 class RecommendedBooksController < ApplicationController
 
   def show
+
     @user = User.find(params[:id])
     @reviews = Review.where(user_id: params[:id])
     @recommended = RecommendedBook.where(user_id: params[:id])
@@ -45,7 +47,7 @@ class RecommendedBooksController < ApplicationController
     recommended_book = RecommendedBook.new(recommended_book_params)
     recommended_book.user_id = current_user.id
     if recommended_book.save
-      redirect_to action: :index and return
+      redirect_to action: :show and return
     else
       redirect_to action: :finish and return
     end

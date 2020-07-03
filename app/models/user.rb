@@ -10,7 +10,7 @@ class User < ApplicationRecord
   has_many :recommended_books
   has_many :favorites
   has_many :book_shelfs
-  attachment :image_id
+  attachment :image
 
   def active_for_authentication?
     super && (self.is_valid == true)

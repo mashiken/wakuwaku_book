@@ -1,0 +1,19 @@
+
+<% @recommended_book.each do |recommended_book| %>
+        <% partner_id = recommended_book.recommended_user_id  %>
+        <% partner = User.find(partner_id)  %>
+	    <div><%= attachment_image_tag partner, :image, size: "100x100", format: "jpg" %></div>
+	　  <%= link_to(user_path(params[:id]), class: 'list-content') do %>
+			<table class=' table table-hover table-inverse order_table_text'>
+				<tr><td><%= partner.family_name %></td></tr>
+				<% books = RakutenWebService::Books::Book.search(isbn: recommended_book.book_id.to_i) %>
+	            <% books.each do |book| %>
+	                <tr>
+					  <td><%= link_to (image_tag(book.medium_image_url)), book.item_url %> <%= book.title %></td>
+				  　</tr>
+	            <% end %>
+				<tr><td><%= recommended_book.title %></td></tr>
+				<tr><td><%= recommended_book.text %></td></tr>
+		    </table>
+	    <% end %>
+<% end %>

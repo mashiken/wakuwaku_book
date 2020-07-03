@@ -4,24 +4,18 @@
 <!-- おすすめ数一覧orおすすめされ数一覧の場合で表記を変更 -->
 <% if params[:recommended_patarn] == "1"%>
   <div><%= @user.family_name %><%= @user.given_name %>さんのおすすめ書籍</div>
+
+  <!-- ユーザーに関するの書籍レビュー/おすすめ数へのリンク -->
+  <%= render partial: "users/link_index", locals: { reviews: @reviews, recommended: @recommended, recommended_user: @recommended_user, books: @books } %>
+  <!-- ユーザーのおすすめ数一覧へのリンク -->
+  <%= render partial: "recommended_books/user", locals: { recommended_book: @recommended_book} %>
+
 <% elsif params[:recommended_patarn] == "2"%>
   <div><%= @user.family_name %><%= @user.given_name %>さんへのおすすめ書籍</div>
-<% end %>
 
-<!-- ユザーに関するの書籍レビュー/おすすめ数へのリンク -->
-<%= render partial: "users/link_index", locals: { reviews: @reviews, recommended: @recommended, recommended_user: @recommended_user, books: @books } %>
+  <!-- ユーザーに関するの書籍レビュー/おすすめ数へのリンク -->
+  <%= render partial: "users/link_index", locals: { reviews: @reviews, recommended: @recommended, recommended_user: @recommended_user, books: @books } %>
 
-<% @recommended_book.each do |recommended_book| %>
-　  <%= link_to(user_path(params[:id]), class: 'list-content') do %>
-		<table class=' table table-hover table-inverse order_table_text'>
-			<% books = RakutenWebService::Books::Book.search(isbn: recommended_book.book_id.to_i) %>
-            <% books.each do |book| %>
-                <tr>
-				  <td><%= link_to (image_tag(book.medium_image_url)), book.item_url %> <%= book.title %></td>
-			  　</tr>
-            <% end %>
-			<tr><td><%= recommended_book.title %></td></tr>
-			<tr><td><%= recommended_book.text %></td></tr>
-	    </table>
-    <% end %>
+  <!-- ユーザーのおすすめされた数一覧へのリンク -->
+  <%= render partial: "recommended_books/recommended_user", locals: { recommended_book: @recommended_book} %>
 <% end %>
