@@ -7,7 +7,7 @@ class CreateRecommendedBooks < ActiveRecord::Migration[5.2]
       t.integer :recommended_user_id, null: false
       t.string   :book_id, null: false
       t.string   :title, null: false
-      t.string   :text, null: false
+      t.text   :text, null: false
 
       t.timestamps
     end
