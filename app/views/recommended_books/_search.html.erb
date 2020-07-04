@@ -11,7 +11,7 @@
 		<tr>
 	</thead>
 
-  <% if books.present? %>
+    <% if books.present? %>
 		<% books.each do |book| %>
 			<tbody>
 				<tr>
@@ -27,6 +27,7 @@
 					<td><%= link_to "書籍決定",  finish_recommended_book_path(id: recommended_user.id, book_id: book.isbn), class: "btn btn-md btn-danger" %></td>
 				<tr>
 			</tbody>
-	  <% end %>
+	    <% end %>
+	    <%= paginate books, class: "paginate" %>
 	<% end %>
 </table>

@@ -12,5 +12,5 @@
   <%= form.text_field :keyword, class: "form-control" %>
   <%= form.submit '検索', class: "form-control btn btn-success" %>
 <% end %>
-<div>検索結果:<%= @books.count %>件</div>
+<div>検索結果:<%= @books_full.count %>件</div>
 <%= render "books/book", books: @books  %>
