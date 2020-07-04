@@ -10,21 +10,22 @@
 		<tr>
 	</thead>
 
-  <% if books.present? %>
-		<% books.each do |book| %>
+    <% if books.present? %>
+		<% books.each do |item| %>
 			<tbody>
 				<tr>
-					<td><%= link_to (image_tag(book.medium_image_url)), book_path(book.isbn) %></td>
+					<td><%= link_to (image_tag(item.medium_image_url)), book_path(item.isbn) %></td>
 					<td>
-						<%= link_to book_path(book.isbn) do %>
-						  <%= book.title %> <%= book.title_kana %>
+						<%= link_to book_path(item.isbn) do %>
+						  <%= item.title %> <%= item.title_kana %>
 						<% end %>
 					</td>
-					<td><%= book.author %> <%= book.author_kana %></td>
-					<td><%= book.publisher_name %></td>
-					<td><%= book.sales_date %></td>
+					<td><%= item.author %> <%= item.author_kana %></td>
+					<td><%= item.publisher_name %></td>
+					<td><%= item.sales_date %></td>
 				<tr>
 			</tbody>
-	  <% end %>
+	    <% end %>
+	    <%= paginate books, class: "paginate" %>
 	<% end %>
 </table>
