@@ -6,7 +6,7 @@
   <div><%= @user.nickname %>さんのおすすめ書籍</div>
 
   <!-- ユーザーに関するの書籍レビュー/おすすめ数へのリンク -->
-  <%= render partial: "users/link_index", locals: { reviews: @reviews, recommended: @recommended, recommended_user: @recommended_user, books: @books } %>
+  <%= render partial: "users/link_index", locals: { reviews: @reviews, recommended: @recommended, recommended_user: @recommended_user, books: @books, user: @user } %>
   <!-- ユーザーのおすすめ数一覧へのリンク -->
   <%= render partial: "recommended_books/user", locals: { recommended_book: @recommended_book} %>
 
@@ -14,7 +14,7 @@
   <div><%= @user.nickname %>さんへのおすすめ書籍</div>
 
   <!-- ユーザーに関するの書籍レビュー/おすすめ数へのリンク -->
-  <%= render partial: "users/link_index", locals: { reviews: @reviews, recommended: @recommended, recommended_user: @recommended_user, books: @books } %>
+  <%= render partial: "users/link_index", locals: { reviews: @reviews, recommended: @recommended, recommended_user: @recommended_user, books: @books, user: @user } %>
 
   <!-- ユーザーのおすすめされた数一覧へのリンク -->
   <%= render partial: "recommended_books/recommended_user", locals: { recommended_book: @recommended_book} %>

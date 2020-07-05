@@ -3,19 +3,37 @@
 <div><%= @user.nickname %>さんのレビュー</div>
 
 <!-- ユザーに関するの書籍レビュー/おすすめ数へのリンク -->
-<%= render partial: "users/link_index", locals: { reviews: @reviews, recommended: @recommended, recommended_user: @recommended_user, books: @books } %>
+<%= render partial: "users/link_index", locals: { reviews: @reviews, recommended: @recommended, recommended_user: @recommended_user, books: @books, user: @user } %>
 
-<% @reviews.each do |review| %>
-　  <%= link_to(user_path(review.user_id), class: 'list-content') do %>
-		<table class=' table table-hover table-inverse order_table_text'>
-			<% books = RakutenWebService::Books::Book.search(isbn: review.book_id.to_i) %>
-            <% books.each do |book| %>
-                 <tr>
-				  <td><%= link_to (image_tag(book.medium_image_url)), book.item_url %> <%= book.title %></td>
-			  </tr>
-            <% end %>
-			<tr><td><%= review.title %></td></tr>
-			<tr><td><%= review.text %></td></tr>
-	    </table>
-    <% end %>
-<% end %>
+
+<table class=' table table-hover table-inverse order_table_text'>
+	<thead>
+		<tr>
+			<th>書籍画像</th>
+			<th>書籍タイトル / カナ</th>
+			<th>著者名 / カナ</th>
+			<th>出版社名</th>
+			<th>レビュー文</th>
+		    <th>書籍詳細</th>
+		<tr>
+	</thead>
+
+  　<% @reviews.each do |review| %>
+	　　<% books = RakutenWebService::Books::Book.search(isbn: review.book_id.to_i) %>
+  　　　<% books.each do |item| %>
+			<tbody>
+				<tr>
+					<td><%= image_tag(item.medium_image_url) %></td>
+					<td><%= item.title %><br><%= item.title_kana %></td>
+					<td><%= item.author %><br><%= item.author_kana %></td>
+					<td><%= item.publisher_name %></td>
+					<td>
+						タイトル : <%= review.title %><br>
+						本文 : <%= review.text %>
+					</td>
+					<td><%= link_to "詳細情報",  book_path(item.isbn), class: "btn btn-md btn-info" %></td>
+				<tr>
+			</tbody>
+	    <% end %>
+	<% end %>
+</table>

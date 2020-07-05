@@ -1,19 +1,30 @@
 <h4>オススメ書籍 確認フォーム</h4>
  <!-- 宛名 -->
-<div><%= @recommended_user.nickname %>さんへ</div>
+<h5><%= @recommended_user.nickname %>さんへ</h5>
 <%= form_with model: @recommended_book , method: :post, local: true do |form| %>
 
-  <% @book_details.each do |book_detail| %>
-	　<%= image_tag(book_detail.large_image_url) %>
-	　<%= book_detail.title %> <%= book_detail.title_kana %>
-	  <%= form.hidden_field :book_id, :value => book_detail.isbn %>
-  <% end %>
+  <div class="row">
+    <div class="col-xs-4">
+      <% @book_details.each do |book_detail| %>
+          <%= image_tag(book_detail.large_image_url) %><br>
+          <div class="recommend-field">
+            <%= book_detail.title %><%= book_detail.title_kana %>
+          </div>
+        <%= form.hidden_field :book_id, :value => book_detail.isbn %>
+      <% end %>
+    </div>
+    <div class="col-xs-8">
+      <div class="recommend-field">
+        <p>おすすめタイトル</p>
+        <%= form.text_field :title, autofocus: true %>
+      </div>
+      <div class="recommend-field">
+        <p>おすすめ文</p>
+        <%= form.text_area :text, autofocus: true %>
+      </div>
 
-  <%= form.label :title, "おすすめタイトル" %>
-  <%= form.text_field :title, autofocus: true %>
-  <%= form.label :text, "おすすめ文" %>
-  <%= form.text_area :text, autofocus: true %>
-
-  <%= form.hidden_field :recommended_user_id, :value => @recommended_user.id %>
-	<%= form.submit '送信', class: "form-control btn btn-success" %>
+      <%= form.hidden_field :recommended_user_id, :value => @recommended_user.id %>
+    	<p><%= form.submit '送信する', class: "btn btn-success" %></p>
+    </div>
+  </div>
 <% end %>

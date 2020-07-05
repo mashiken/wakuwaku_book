@@ -1,3 +1,29 @@
 // Place all the styles related to the users controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+/* Userviews全体の調整 */
+.clearfix::after {
+  content: "";
+  display: block;
+  clear: both;
+}
+
+.bottun {
+  display: inline-block;
+}
+
+/* 本棚一覧のレイアウト調整(show) */
+.book_shelf_books {
+  float: left;
+  text-align: center;
+  width: 10%;
+  height: 300px;
+  padding: 5px;
+}
+
+/* プロフィールのレイアウト調整(show) */
+.profile-field {
+	padding: 5px;
+}
+

@@ -15,7 +15,7 @@
 
 	<%= form_with model: @book_shelf, method: :post, local: true do |f| %>
     <%= f.hidden_field :book_id, :value => book_detail.isbn %>
-    <%= f.submit "本棚へ追加" %>
+    <%= f.submit "本棚へ追加", lass:"btn btn-success" %>
   <% end %>
 
   <%= link_to "楽天で本を買う" , book_detail.item_url, class:"btn btn-success" %>

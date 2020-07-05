@@ -8,9 +8,10 @@
 　<%= form.label :search_condition, "書籍タイトルから検索", {value: :title, style: "display: inline-block;", class:"radio_button_text"} %>
   <%= form.radio_button :search_condition, :author,  class:"radio_button" %>
 　<%= form.label :search_condition, "著者名から検索", {value: :author, style: "display: inline-block;", class:"radio_button_text"} %>
-
-  <%= form.text_field :keyword, class: "form-control" %>
-  <%= form.submit '検索', class: "form-control btn btn-success" %>
+    <%= form.text_field :keyword, class: "form-control" %>
+    <div style="padding:10px">
+    	<%= form.submit '検索', class: "btn btn-lg btn-success " %>
+    </div>
 <% end %>
-<div>検索結果:<%= @books_full.count %>件</div>
-<%= render "books/book", books: @books  %>
+
+<%= render "books/book", books: @books, books_full: @books_full  %>

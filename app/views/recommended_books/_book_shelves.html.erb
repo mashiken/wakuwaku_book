@@ -7,25 +7,26 @@
 			<th>著者名 / カナ</th>
 			<th>出版社名</th>
 			<th>発売日</th>
-			<th></th>
+			<th>書籍確定</th>
+		    <th>書籍詳細</th>
 		<tr>
 	</thead>
 
   <% book_shelves.each do |book_shelf| %>
-	  <% books = RakutenWebService::Books::Book.search(isbn: book_shelf.book_id.to_i) %>
-	  <% books.each do |book| %>
+	    <% books = RakutenWebService::Books::Book.search(isbn: book_shelf.book_id.to_i) %>
+	    <% books.each do |item| %>
 			<tbody>
 				<tr>
-					<td><%= link_to (image_tag(book.medium_image_url)), book_path(book_shelf.book_id.to_i) %></td>
-					<td>
-						<%= book.title %> <%= book.title_kana %>
-					</td>
-					<td><%= book.author %> <%= book.author_kana %></td>
-					<td><%= book.publisher_name %></td>
-					<td><%= book.sales_date %></td>
-					<td><%= link_to "書籍決定",  finish_recommended_book_path(id: recommended_user.id, book_id: book_shelf.book_id), class: "btn btn-md btn-danger" %></td>
+					<td><%= image_tag(item.medium_image_url) %></td>
+					<td><%= item.title %><br><%= item.title_kana %></td>
+					<td><%= item.author %><br><%= item.author_kana %></td>
+					<td><%= item.publisher_name %></td>
+					<td><%= item.sales_date %></td>
+					<td><%= link_to "書籍決定",  finish_recommended_book_path(id: recommended_user.id, book_id: book_shelf.book_id), class: "btn btn-md btn-success" %></td>
+					<td><%= link_to "詳細情報",  book_path(item.isbn), class: "btn btn-md btn-info" %></td>
 				<tr>
 			</tbody>
-	  <% end %>
+	    <% end %>
 	<% end %>
 </table>
+

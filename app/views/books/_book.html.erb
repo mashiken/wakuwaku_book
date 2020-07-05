@@ -1,31 +1,32 @@
 
-<table class=' table table-hover table-inverse order_table_text'>
-	<thead>
-		<tr>
-			<th>商品画像</th>
-			<th>書籍タイトル / カナ</th>
-			<th>著者名 / カナ</th>
-			<th>出版社名</th>
-			<th>発売日</th>
-		<tr>
-	</thead>
+<% if books.present? %>
+  <h4>検索結果:<%= books_full.count %>件</h4>
+	<table class="table table-striped">
+		<thead>
+			<tr>
+				<th>商品画像</th>
+				<th>書籍タイトル / カナ</th>
+				<th>著者名 / カナ</th>
+				<th>出版社名</th>
+				<th>発売日</th>
+			<tr>
+		</thead>
 
-    <% if books.present? %>
 		<% books.each do |item| %>
 			<tbody>
 				<tr>
 					<td><%= link_to (image_tag(item.medium_image_url)), book_path(item.isbn) %></td>
 					<td>
 						<%= link_to book_path(item.isbn) do %>
-						  <%= item.title %> <%= item.title_kana %>
+						  <%= item.title %><br><%= item.title_kana %>
 						<% end %>
 					</td>
-					<td><%= item.author %> <%= item.author_kana %></td>
+					<td><%= item.author %><br><%= item.author_kana %></td>
 					<td><%= item.publisher_name %></td>
 					<td><%= item.sales_date %></td>
 				<tr>
 			</tbody>
-	    <% end %>
-	    <%= paginate books, class: "paginate" %>
-	<% end %>
-</table>
+	  <% end %>
+	  <%= paginate books, class: "paginate" %>
+	</table>
+<% end %>

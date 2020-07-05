@@ -1,20 +1,39 @@
 
-<% @recommended_book.each do |recommended_book| %>
-        <% partner_id = recommended_book.recommended_user_id  %>
-        <% partner = User.find(partner_id)  %>
-	    <div><%= attachment_image_tag partner, :image, size: "100x100", format: "jpg" %></div>
-	　  <%= link_to(user_path(params[:id]), class: 'list-content') do %>
-			<table class=' table table-hover table-inverse order_table_text'>
-				<% books = RakutenWebService::Books::Book.search(isbn: recommended_book.book_id.to_i) %>
-	            <% books.each do |book| %>
-	                <tr>
-					  <td><%= link_to (image_tag(book.medium_image_url)), book.item_url %></td>
-				  　</tr>
-				    <tr><td><%= book.title %></td></tr>
-	            <% end %>
-	            <tr><td><%= partner.nickname %>さんからのおすすめ</td></tr>
-				<tr><td><%= recommended_book.title %></td></tr>
-				<tr><td><%= recommended_book.text %></td></tr>
-		    </table>
-	    <% end %>
-<% end %>
+<table class=' table table-hover table-inverse order_table_text'>
+	<thead>
+		<tr>
+			<th>書籍をオススメしたユーザー</th>
+			<th>書籍画像</th>
+			<th>書籍タイトル / カナ</th>
+			<th>著者名 / カナ</th>
+			<th>出版社名</th>
+			<th>オススメ文</th>
+		    <th>書籍詳細</th>
+		<tr>
+	</thead>
+
+  <% @recommended_book.each do |recommended_book| %>
+	  <% books = RakutenWebService::Books::Book.search(isbn: recommended_book.book_id.to_i) %>
+	  <% books.each do |item| %>
+			<tbody>
+				<tr>
+					<td>
+						<% partner_id = recommended_book.recommended_user_id  %>
+　　　　　　 <% partner = User.find(partner_id)  %>
+　　　　　　 <%= attachment_image_tag partner, :image, size: "100x100", format: "jpg" %></br>
+            <%= partner.nickname %>
+        　</td>
+          <td><%= image_tag(item.medium_image_url) %></td>
+          <td><%= item.title %><br><%= item.title_kana %></td>
+					<td><%= item.author %><br><%= item.author_kana %></td>
+					<td><%= item.publisher_name %></td>
+					<td>
+						タイトル : <%= recommended_book.title %><br>
+						本文 : <%= recommended_book.text %>
+					</td>
+					<td><%= link_to "詳細情報",  book_path(item.isbn), class: "btn btn-md btn-info" %></td>
+        </tr>
+			</tbody>
+	  <% end %>
+	<% end %>
+</table>

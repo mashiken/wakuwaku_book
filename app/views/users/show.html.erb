@@ -1,37 +1,50 @@
 
 <p class="text-danger"><%= flash[:notice] %></p>
+
 <h4>登録情報</h4>
 <!-- ユザーに関するの書籍レビュー/おすすめ数へのリンク -->
-<%= render partial: "users/link_index",locals: { reviews: @reviews, recommended: @recommended, recommended_user: @recommended_user, books: @books } %>
-
-<!-- 本棚に登録した中身の一覧 -->
-<h4>MY 本棚</h4>
-<% @book_shelves.each do |book_shelf| %>
-	<% books = RakutenWebService::Books::Book.search(isbn: book_shelf.book_id.to_i) %>
-	<% books.each do |book| %>
-	  <div><%= link_to (image_tag(book.medium_image_url)), book_path(book_shelf.book_id.to_i) %></div>
-		<div><%= book.title %></div>
-		<% if @user.id == current_user.id %>
-		  <div><%= link_to "本棚から削除する",  book_shelf_path(id: book_shelf.id), method: :delete, remote: true, class: "btn btn-md btn-danger" %></div>
-		<% end %>
-	<% end %>
-<% end %>
+<%= render partial: "users/link_index",locals: { reviews: @reviews, recommended: @recommended, recommended_user: @recommended_user, books: @books, user: @user } %>
 
 <!-- ユザープロフィール覧 -->
-<h4>プロフィール</h4>
-<div><%= attachment_image_tag @user, :image, size: "100x100", format: "jpg" %></div>
-<table class="table table-inverse">
-  <tr><td>名前:<%= @user.nickname %></td></tr>
-  <tr><td>性別:<%= @user.gender %></td></tr>
-  <tr><td>年齢:<%= @user.age %></td></tr>
-  <tr><td>職業:<%= @user.profession %></td></tr>
-  <tr><td>プロフィール:<%= @user.profile %></td></tr>
-</table>
+<div class="profile-info">
+	<h4>プロフィール</h4>
+	<div class="row profile-field">
+		<div class="col-xs-2">
+			<%= attachment_image_tag @user, :image, size: "200x180", format: "jpg" %>
+		</div>
+		<div class="col-xs-9 col-xs-offset-1">
+			<table class="table table-inverse">
+			  <tr><td>名前 : <%= @user.nickname %></td></tr>
+			  <tr><td>性別 : <%= @user.gender %></td></tr>
+			  <tr><td>年齢 : <%= @user.age %></td></tr>
+			  <tr><td>職業 : <%= @user.profession %></td></tr>
+			  <tr><td>プロフィール : <%= @user.profile %></td></tr>
+		  </table>
+		  <% if @user.id == current_user.id %>
+		    <%= link_to "プロフィール情報を編集する", edit_user_path(current_user), class: "btn btn-sm btn-info" %>
+		    <%= link_to "wakuwaku-bookを退会する", confirm_users_path, class: "btn btn-sm btn-warning" %>
+		  <% else %>
+		    <%= link_to "このユザーに書籍をオススメする", confirm_recommended_book_path(@user.id), class: "btn btn-sm btn-primary"  %>
+		  <% end %>
+		</div>
+	</div>
+</div>
 
-<!-- ユザー関連 その他 -->
-<% if @user.id == current_user.id %>
-  <button><%= link_to "プロフィール情報を編集する", edit_user_path(current_user) %></button>
-  <button><%= link_to "wakuwaku-bookを退会する", confirm_users_path %></button>
-<% else %>
-  <button><%= link_to "このユザーに書籍をオススメする", confirm_recommended_book_path(@user.id) %></button>
-<% end %>
+<!-- 本棚に登録した中身の一覧 -->
+<div class="bookshelves">
+	<h4>MY 本棚</h4>
+	<div>
+		<% @book_shelves.each do |book_shelf| %>
+		<% books = RakutenWebService::Books::Book.search(isbn: book_shelf.book_id.to_i) %>
+			<div class="book_shelf_books clearfix">
+				<% books.each do |book| %>
+				  	<div><%= link_to (image_tag(book.medium_image_url)), book_path(book_shelf.book_id.to_i) %><br>
+				  	<%= book.title %></div>
+					<% if @user.id == current_user.id %>
+					  <div><%= link_to "削除",  book_shelf_path(id: book_shelf.id), method: :delete, remote: true, class: "btn btn-xs btn-danger btn-block" %></div>
+					<% end %>
+			  <% end %>
+			</div>
+	  <% end %>
+	</div>
+</div>
