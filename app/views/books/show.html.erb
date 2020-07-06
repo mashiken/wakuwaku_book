@@ -1,29 +1,75 @@
 <h2>書籍詳細</h2>
 
 <% @book_details.each do |book_detail| %>
-	<%= image_tag(book_detail.large_image_url) %>
-  <%= book_detail.title %> <%= book_detail.title_kana %>
+  <div class="row">
+    <div class="col-xs-2">
+      <%= image_tag(book_detail.large_image_url) %>
+      <!-- 本棚作成フォーム bookshelf/create -->
+      <div class="book-shelves-form">
+        <%= form_with model: @book_shelf, method: :post, local: true do |f| %>
+          <%= f.hidden_field :book_id, :value => book_detail.isbn %>
+          <%= f.submit "本棚へ追加", lass:"btn btn-success" %>
+        <% end %>
+      </div>
+      <!-- 楽天フォームへ -->
+      <div clas="rakuten-link-field">
+        <%= link_to "楽天で本を買う" , book_detail.item_url, class:"btn btn-sm btn-success rakuten-link-field" %>
+      </div>
+    </div>
+    <div class="col-xs-10">
+      <div class="row">
+        <table class="table table-hover table-inverse">
+          <tbody>
+            <tr>
+              <td class="col-xs-4">書籍タイトル</td>
+              <td class="col-xs-8"><%= book_detail.title %>/<%= book_detail.title_kana %></td>
+            </tr>
+            <tr>
+              <td class="col-xs-4">多巻物収録内容</td>
+              <td class="col-xs-8"><%= book_detail.contents %></td>
+            </tr>
+            <tr>
+              <td class="col-xs-4">著者名</td>
+              <td class="col-xs-8"><%= book_detail.author %>/<%= book_detail.author_kana %></td>
+            </tr>
+            <tr>
+              <td class="col-xs-4">出版社名</td>
+              <td class="col-xs-8"><%= book_detail.publisher_name %></td>
+            </tr>
+            <tr>
+              <td class="col-xs-4">書籍サイズ</td>
+              <td class="col-xs-8"><%= book_detail.size %></td>
+            </tr>
+            <tr>
+              <td class="col-xs-4">説明文</td>
+              <td class="col-xs-8"><%= book_detail.item_caption %></td>
+            </tr>
+            <tr>
+              <td class="col-xs-4">発売日</td>
+              <td class="col-xs-8"><%= book_detail.sales_date %></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+<% end %>
 
-	<%= book_detail.title %> <%= book_detail.title_kana %>
-  <%= book_detail.contents %></td></tr>
-		<tr><td><%= book_detail.author %> <%= book_detail.author_kana %></td></tr>
-		<tr><td><%= book_detail.publisher_name %></td></tr>
-    <tr><td><%= book_detail.size %></td></tr>
-    <tr><td><%= book_detail.item_caption %></td></tr>
-    <tr><td><%= book_detail.sales_date %></td></tr>
-  </table>
-
-	<%= form_with model: @book_shelf, method: :post, local: true do |f| %>
-    <%= f.hidden_field :book_id, :value => book_detail.isbn %>
-    <%= f.submit "本棚へ追加", lass:"btn btn-success" %>
+<div class="row">
+  <% if user_signed_in? %>
+    <!-- レビュー投稿を表示 -->
+    <div class="review-form">
+      <h4>レビュー投稿フォーム</h4>
+      <%= render partial: "books/new_review", locals: { book_details: @book_details, review: @review } %>
+    </div>
   <% end %>
-
-  <%= link_to "楽天で本を買う" , book_detail.item_url, class:"btn btn-success" %>
-<% end %>
-
-<% if user_signed_in? %>
-  <!-- レビュー投稿を表示 -->
-  <%= render partial: "books/new_review", locals: { book_details: @book_details, review: @review } %>
-<% end %>
   <!-- レビュー一覧を表示 -->
-  <%= render partial: "books/reviews", locals: { reviews: @reviews } %>
+  <h4>レビュー一覧</h4>
+  <% if @reviews.present? %>
+    <%= render partial: "books/reviews", locals: { reviews: @reviews } %>
+  <% else %>
+    <h3 style="color:red">現在、投稿レビューはありません。<h3>
+  <% end %>
+</div>
+
+
