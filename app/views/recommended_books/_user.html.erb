@@ -18,10 +18,10 @@
 			<tbody>
 				<tr>
 					<td>
-						<% partner_id = recommended_book.recommended_user_id  %>
-　　　　　　 <% partner = User.find(partner_id)  %>
-　　　　　　 <%= attachment_image_tag partner, :image, size: "100x100", format: "jpg", fallback:"no_image.jpg " %>            </br>
-            <%= partner.nickname %>
+            <% partner_id = recommended_book.recommended_user_id  %>
+						<% partner = User.find(partner_id)  %>
+						<%= attachment_image_tag partner, :image, size: "100x100", format: "jpg", fallback:"no_image.jpg " %>
+            <br><%= partner.nickname %>
 			    </td>
           <td><%= image_tag(item.medium_image_url) %></td>
           <td><%= item.title %><br><%= item.title_kana %></td>

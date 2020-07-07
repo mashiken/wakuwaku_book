@@ -70,12 +70,15 @@ class RecommendedBooksController < ApplicationController
   end
 
   def create
-    recommended_book = RecommendedBook.new(recommended_book_params)
-    recommended_book.user_id = current_user.id
-    if recommended_book.save
-      flash[:notice] = recommended_book.recommended_user 'さんにオススメを完了しました'
+    @recommended_book = RecommendedBook.new(recommended_book_params)
+    @recommended_book.user_id = current_user.id
+    if @recommended_book.save
+      flash.now[:notice] = 'オススメ成功しました'
       redirect_to user_path(current_user) and return
     else
+      #finishへrenderで返すのに必要/valitationErrorで必要
+      @recommended_user = User.find(@recommended_book.recommended_user_id)
+      @book_details = RakutenWebService::Books::Book.search(isbn: @recommended_book.book_id.to_i)
       render :finish and return
     end
   end

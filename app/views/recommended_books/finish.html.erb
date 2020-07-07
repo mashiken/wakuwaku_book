@@ -1,6 +1,19 @@
 <h4>オススメ書籍 確認フォーム</h4>
  <!-- 宛名 -->
-<h5><%= @recommended_user.nickname %>さんへ</h5>
+<h5 style="font-weight:bold"><%= @recommended_user.nickname %>さんへ</h5>
+<!-- エラーメッセージ -->
+<% if @recommended_book.errors.any? %>
+    <div id="error_explanation">
+        <h2><%= pluralize(@recommended_book.errors.count, "error") %> prohibited this book from being saved:</h2>
+
+        <ul>
+            <% @recommended_book.errors.full_messages.each do |message| %>
+                <li><%= message %></li>
+            <% end %>
+        </ul>
+    </div>
+<% end %>
+
 <%= form_with model: @recommended_book , method: :post, local: true do |form| %>
 
   <div class="row">
@@ -15,11 +28,13 @@
     </div>
     <div class="col-xs-8">
       <div class="recommend-field">
-        <p>おすすめタイトル</p>
+        <p style="font-weight:bold">おすすめタイトル</p>
+        <em>2文字以上、50文字以内でお願いします。</em>
         <%= form.text_field :title, autofocus: true %>
       </div>
       <div class="recommend-field">
-        <p>おすすめ文</p>
+        <p style="font-weight:bold">おすすめ文</p>
+        <em>10文字以上、600文字以内でお願いします。</em>
         <%= form.text_area :text, autofocus: true %>
       </div>
 

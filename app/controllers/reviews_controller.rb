@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 class ReviewsController < ApplicationController
 
+
   def show
     @user = User.find(params[:id])
     @reviews = Review.where(user_id: params[:id])
@@ -9,11 +10,17 @@ class ReviewsController < ApplicationController
   end
 
   def create
+
   	@review = Review.new(reviews_params)
   	@review.user_id = current_user.id
   	if @review.save
   		redirect_to book_path(@review.book_id)
   	else
+      #books/showへrenderで返すのに必要/valitationErrorで必要
+      @book_details = RakutenWebService::Books::Book.search(isbn: @review.book_id.to_i)
+      @reviews = Review.where(book_id:  @review.book_id.to_i)
+      @book_shelf = BookShelf.new
+      render "books/show"
   	end
   end
 
