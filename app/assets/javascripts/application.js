@@ -16,3 +16,12 @@
 //= require bootstrap-sprockets
 //= require turbolinks
 //= require_tree .
+//= require rails-ujs
+
+$(function() {
+    $('#theTarget').slick({
+        dots: true,
+        autoplay: true,
+        autoplaySpeed: 1800,
+    });
+});

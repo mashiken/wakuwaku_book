@@ -1,5 +1,5 @@
 <!--会員登録画面-->
-<h2>会員登録</h2>
+<h4>会員登録</h4>
 <p>登録すると「マイページ」を持つ事ができます。マイページから本のレビューや本を他ユザーへの紹介する事ができます。<br>
 また他のユザーの「ユザーページ」を確認する事で読書の幅を広げましょう。</p>
 
@@ -8,7 +8,7 @@
   <%= render "devise/shared/error_messages", resource: resource %>
   <!--名前を入力-->
   <div class="field">
-    <%= f.label :nickname, "ニックネーム" %>
+    <%= f.label :nickname, "ニックネーム" %><br />
     <%= f.text_field :nickname, autofocus: true %>
   </div>
 

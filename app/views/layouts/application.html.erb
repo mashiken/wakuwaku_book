@@ -7,9 +7,12 @@
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
+　　<link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick-theme.css"/>
+　　<script type="text/javascript" src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
   </head>
 
-  <header class="navbar navbar-black" style="background-color:#afeeee;">
+  <header class="navbar navbar-black header">
     <div class="container">
       <nav class="navbar-header navbar-left">
         <%= link_to root_path do %>
@@ -42,7 +45,7 @@
     </div>
   </body>
 
-  <footer class="footer" style="background-color:#afeeee;">
+  <footer class="footer">
     <div class="container">
       <p class="text-muted">@CopyRight NaganoCake.inc</p>
     </div>
