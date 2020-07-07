@@ -18,10 +18,13 @@
 //= require_tree .
 //= require rails-ujs
 
-$(function() {
-    $('#theTarget').slick({
-        dots: true,
-        autoplay: true,
-        autoplaySpeed: 1800,
+document.addEventListener("turbolinks:load"
+, function () {
+	$(function() {
+	    $('#theTarget').slick({
+	        dots: true,
+	        autoplay: true,
+	        autoplaySpeed: 1800,
+	    });
     });
 });
