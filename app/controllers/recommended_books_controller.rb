@@ -47,6 +47,8 @@ class RecommendedBooksController < ApplicationController
 
       if @books_full.present?
         @books = Kaminari.paginate_array(@books_full, total_count: @books_full.count ).page(params[:page])
+      else
+        flash.now[:notice] = '申し訳ございません。お探しの商品が見つかりませんでした。もう一度、ラジオボタン「書籍タイトル」または「著者名」にチェックの上、検索ワードの入力をお願いします。'
       end
     end
   end
