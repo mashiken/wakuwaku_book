@@ -6,9 +6,11 @@
       <%= image_tag(book_detail.large_image_url) %>
       <!-- 本棚作成フォーム bookshelf/create -->
       <div class="book-shelves-form">
-        <%= form_with model: @book_shelf, method: :post, local: true do |f| %>
-          <%= f.hidden_field :book_id, :value => book_detail.isbn %>
-          <%= f.submit "本棚へ追加", lass:"btn btn-success" %>
+        <% if user_signed_in? %>
+          <%= form_with model: @book_shelf, method: :post, local: true do |f| %>
+            <%= f.hidden_field :book_id, :value => book_detail.isbn %>
+            <%= f.submit "本棚へ追加", lass:"btn btn-success" %>
+          <% end %>
         <% end %>
       </div>
       <!-- 楽天フォームへ -->

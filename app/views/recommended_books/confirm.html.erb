@@ -47,7 +47,8 @@
     <% end %>
     <% if @books.present? %>
       <%= render partial: "recommended_books/search", locals: { recommended_user: @recommended_user, books: @books,books_full: @books_full } %>
+    <% else %>
+      <p class="text-danger"><%= flash[:notice] %></p>
     <% end %>
-    <p class="text-danger"><%= flash[:notice] %></p>
   <% end %>
 </div>
