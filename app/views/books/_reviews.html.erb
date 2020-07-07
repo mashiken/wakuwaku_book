@@ -12,7 +12,7 @@
   	<tbody>
   		<tr>
   			<td>
-  				<%= attachment_image_tag review.user, :image, size: "100x100", format: "jpg" %><br>
+  				<%= attachment_image_tag review.user, :image, size: "100x100", format: "jpg", fallback:"no_image.jpg" %><br>
   				<%= review.user.nickname %>
   			</td>
   			<td><%= review.title %></td>
