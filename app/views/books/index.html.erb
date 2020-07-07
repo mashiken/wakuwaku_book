@@ -14,4 +14,7 @@
     </div>
 <% end %>
 
-<%= render "books/book", books: @books, books_full: @books_full  %>
+<% if @books.present? %>
+  <%= render "books/book", books: @books, books_full: @books_full  %>
+<% end %>
+<p class="text-danger"><%= flash[:notice] %></p>

@@ -25,17 +25,24 @@ class RecommendedBooksController < ApplicationController
     #レビュー一覧から書籍を選ぶ場合取得
     @reviews = Review.where(user_id: current_user.id)
 
-    if params[:keyword]
+    if params[:keyword] == "" #キーワード空欄の場合
+      flash.now[:notice] = '申し訳ございません。お探しの商品が見つかりませんでした。もう一度、ラジオボタン「書籍タイトル」または「著者名」にチェックの上、検索ワードの入力をお願いします。'
+    else
+      @books_full = [] #配列を用意
       if params[:search_condition] == "title"
         books = RakutenWebService::Books::Book.search(title: params[:keyword])
+        #検索結果にgem kaminariにてpagenationを追加する。
+        books.all.each do |book| #books.allで検索結果の全ての商品単位を表示
+          @books_full.push(book)
+        end
       elsif params[:search_condition] == "author"
         books = RakutenWebService::Books::Book.search(author: params[:keyword])
-      end
-
-      #検索結果にgem kaminariにてpagenationを追加する。
-      @books_full = [] #配列を用意
-      books.all.each do |book| #books.allで検索結果の全ての商品単位を表示
-        @books_full.push(book)
+        #検索結果にgem kaminariにてpagenationを追加する。
+        books.all.each do |book| #books.allで検索結果の全ての商品単位を表示
+          @books_full.push(book)
+        end
+      else
+        flash.now[:notice] = '申し訳ございません。お探しの商品が見つかりませんでした。もう一度、ラジオボタン「書籍タイトル」または「著者名」にチェックの上、検索ワードの入力をお願いします。'
       end
 
       if @books_full.present?
