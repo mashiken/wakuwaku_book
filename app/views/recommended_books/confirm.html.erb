@@ -45,6 +45,9 @@
         <%= form.submit '検索', class: "btn btn-lg btn-success " %>
       </div>
     <% end %>
-    <%= render partial: "recommended_books/search", locals: { recommended_user: @recommended_user, books: @books,books_full: @books_full } %>
+    <% if @books.present? %>
+      <%= render partial: "recommended_books/search", locals: { recommended_user: @recommended_user, books: @books,books_full: @books_full } %>
+    <% end %>
+    <p class="text-danger"><%= flash[:notice] %></p>
   <% end %>
 </div>
