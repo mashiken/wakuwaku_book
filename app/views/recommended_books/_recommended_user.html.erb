@@ -18,9 +18,9 @@
 			<tbody>
 				<tr>
 					<td>
-						<%= attachment_image_tag recommended_book.user, :image, size: "100x100", format: "jpg" %>
-            <%= recommended_book.user.nickname %>
-        　</td>
+						<%= attachment_image_tag recommended_book.user, :image, size: "100x100", format: "jpg", fallback:"no_image.jpg" %>
+			      <%= recommended_book.user.nickname %>
+			    </td>
           <td><%= image_tag(item.medium_image_url) %></td>
           <td><%= item.title %><br><%= item.title_kana %></td>
 					<td><%= item.author %><br><%= item.author_kana %></td>

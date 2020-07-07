@@ -13,7 +13,7 @@
   	<%= link_to(user_path(user.id), class: 'list-content') do %>
 	  	<tbody>
 	  		<tr>
-	  			<td><%= link_to ( attachment_image_tag user, :image, size: "100x100", format: "jpg" ), user_path(user) %></td>
+	  			<td><%= link_to ( attachment_image_tag user, :image, size: "100x100", format: "jpg", fallback:"no_image.jpg" ), user_path(user) %></td>
 	  			<td><%= link_to user.nickname, user_path(user) %></td>
 	  			<td><%= user.gender %></td>
 	  			<td><%= user.age %></td>

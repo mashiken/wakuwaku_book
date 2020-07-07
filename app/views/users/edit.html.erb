@@ -1,27 +1,28 @@
 <h4>編集</h4>
 <%= form_with model: @user ,url: user_path(@user) , method: :patch, local: true do |f| %>
   <div class="field">
+    <%= f.label :image, "ユーザー画像" %>
     <%= f.attachment_field :image %>
   </div>
   <div class="field">
     <%= f.label :nickname, "ニックネーム" %>
-    <%= f.text_field :nickname, autofocus: true %>
+    <%= f.text_field :nickname, autofocus: true, class: "form-control" %>
   </div>
   <div class="field">
     <%= f.label :gender, "性別(未記入でも大丈夫です。)" %>
-    <%= f.text_field :gender, autofocus: true %>
+    <%= f.text_field :gender, autofocus: true, class: "form-control" %>
   </div>
   <div class="field">
     <%= f.label :age, "年齢(未記入でも大丈夫です。)" %>
-    <%= f.text_field :age, autofocus: true %>
+    <%= f.number_field :age, autofocus: true, class: "form-control" %>
   </div>
   <div class="field">
     <%= f.label :profession, "職業(未記入でも大丈夫です。)" %>
-    <%= f.text_field :profession, autofocus: true %>
+    <%= f.text_field :profession, autofocus: true, class: "form-control" %>
   </div>
   <div class="field">
     <%= f.label :profile, "プロフィール(未記入でも大丈夫です。)" %>
-    <%= f.text_field :profile, autofocus: true %>
+    <%= f.text_area :profile, autofocus: true,  size: "10x5"  %>
   </div>
   <div class="actions">
     <%= f.submit "登録する" %>
