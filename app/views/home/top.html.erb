@@ -1,6 +1,6 @@
 <div class="row">
 	<p class="text-success"><%= flash[:notice] %></p>
-	<div class="col-xs-5">
+	<div class="col-lg-5 col-sm-12">
 		<div class="top-image-field">
 		    <div id="theTarget">
 		        <div><%= image_tag asset_path("img1.jpg", alt: "book-image"), class: "size" %></div>
@@ -10,7 +10,7 @@
 		    </div>
         </div>
 	</div>
-	<div class="col-xs-6 col-xs-offset-1">
+	<div class="col-lg-6 col-lg-offset-1 col-sm-12">
 		<div class="row about">
 			<h2>ようこそ、わくわくブックへ</h2>
 		    <p>1.会員登録無しで書籍の検索とレビューを元に購入が出来ます。</p>
@@ -40,8 +40,8 @@
 		</div>
 		<div class="row login">
 			<h3>さっそく会員登録/ログインをする</h3>
-	        <%= link_to "会員登録", new_user_registration_path, class: "btn btn-success col-xs-5", style: "color:white;"%>
-	        <%= link_to "ログイン", new_user_session_path, class: "btn btn-info col-xs-5 col-xs-offset-1", style: "color:white;" %>
+	        <%= link_to "会員登録", new_user_registration_path, class: "btn btn-success col-lg-5 col-sm-12", style: "color:white;"%>
+	        <%= link_to "ログイン", new_user_session_path, class: "btn btn-info col-lg-5 col-lg-offset-1 col-sm-12", style: "color:white;" %>
 		</div>
 	</div>
 </div>

@@ -10,29 +10,31 @@
     <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
 　　<link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick-theme.css"/>
     <script type="text/javascript" src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+    <link href=”css/bootstrap.min.css” rel=”stylesheet”>
+    <link href=”css/bootstrap-responsive.min.css” rel=”stylesheet”>
   </head>
 
-  <header class="navbar navbar-black header" style="background-color:#afeeee;">
-    <div class="container">
-      <nav class="navbar-header navbar-left">
-        <h2><%= link_to "わくわくブック", root_path%></h2>
-      </nav>
-      <nav>
+  <header>
+    <nav class="navbar navbar-default header" style="background-color:#afeeee;">
+      <div class="container">
+        <div class="navbar-header">
+          <%= link_to "わくわくブック", root_path, class: "navbar-brand"%>
+        </div>
         <ul class="nav navbar-nav navbar-right">
         <% if user_signed_in? %>
           <p class="navbar-text navbar-left">ようこそ、<%= current_user.nickname %>さん！</p>
-          <li class="h-100"><%= link_to "マイページ", user_path(current_user.id) %></li>
-          <li class="h-100"><%= link_to 'ユザー一覧', users_path %></li>
-          <li class="h-100"><%= link_to '書籍検索', books_path %></li>
-          <li class="h-100"><%= link_to 'ログアウト', destroy_user_session_path, method: :delete %></li>
+          <li><%= link_to "マイページ", user_path(current_user.id) %></li>
+          <li><%= link_to 'ユザー一覧', users_path %></li>
+          <li><%= link_to '書籍検索', books_path %></li>
+          <li><%= link_to 'ログアウト', destroy_user_session_path, method: :delete %></li>
         <% else %>
-          <li class="h-100"><%= link_to '書籍検索', books_path %></li>
+          <li><%= link_to '書籍検索', books_path %></li>
           <li><%= link_to '会員登録', new_user_registration_path %></li>
           <li><%= link_to 'ログイン', new_user_session_path %></li>
         <% end %>
         </ul>
-      </nav>
-    </div>
+      </div>
+    </nav>
   </header>
 
 
