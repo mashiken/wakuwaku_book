@@ -21,10 +21,10 @@
 			  <tr><td>プロフィール : <%= @user.profile %></td></tr>
 		  </table>
 		  <% if @user.id == current_user.id %>
-		    <%= link_to "プロフィール情報を編集する", edit_user_path(current_user), class: "btn btn-sm btn-info" %>
-		    <%= link_to "wakuwaku-bookを退会する", confirm_users_path, class: "btn btn-sm btn-warning" %>
+		    <%= link_to "プロフィール情報を編集する", edit_user_path(current_user), class: "btn btn-sm btn-info", style: "color:white;" %>
+		    <%= link_to "wakuwaku-bookを退会する", confirm_users_path, class: "btn btn-sm btn-warning", style: "color:white;" %>
 		  <% else %>
-		    <%= link_to "このユザーに書籍をオススメする", confirm_recommended_book_path(@user.id), class: "btn btn-sm btn-primary"  %>
+		    <%= link_to "このユザーに書籍をオススメする", confirm_recommended_book_path(@user.id), class: "btn btn-sm btn-primary", style: "color:white;"  %>
 		  <% end %>
 		</div>
 	</div>
@@ -41,7 +41,7 @@
 				  	<div><%= link_to (image_tag(book.medium_image_url)), book_path(book_shelf.book_id.to_i) %><br>
 				  	<%= book.title %></div>
 					<% if @user.id == current_user.id %>
-					  <div><%= link_to "削除",  book_shelf_path(id: book_shelf.id), method: :delete, remote: true, class: "btn btn-xs btn-danger btn-block" %></div>
+					  <div><%= link_to "削除",  book_shelf_path(id: book_shelf.id), method: :delete, remote: true, class: "btn btn-xs btn-danger btn-block", style: "color:white;" %></div>
 					<% end %>
 			  <% end %>
 			</div>

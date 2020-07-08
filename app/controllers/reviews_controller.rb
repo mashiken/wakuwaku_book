@@ -1,16 +1,15 @@
 # frozen_string_literal: true
 class ReviewsController < ApplicationController
-
+  before_action :authenticate_user!
 
   def show
     @user = User.find(params[:id])
-    @reviews = Review.where(user_id: params[:id])
+    @reviews = Review.where(user_id: params[:id]).page(params[:page]).per(10)
     @recommended = RecommendedBook.where(user_id: params[:id])
     @recommended_user = RecommendedBook.where(recommended_user_id: params[:id])
   end
 
   def create
-
   	@review = Review.new(reviews_params)
   	@review.user_id = current_user.id
   	if @review.save
@@ -18,7 +17,7 @@ class ReviewsController < ApplicationController
   	else
       #books/showへrenderで返すのに必要/valitationErrorで必要
       @book_details = RakutenWebService::Books::Book.search(isbn: @review.book_id.to_i)
-      @reviews = Review.where(book_id:  @review.book_id.to_i)
+      @reviews = Review.where(book_id:  @review.book_id.to_i).page(params[:page]).per(10)
       @book_shelf = BookShelf.new
       render "books/show"
   	end

@@ -1,5 +1,5 @@
 class BookShelvesController < ApplicationController
-
+  before_action :authenticate_user!
   def create
 		book_shelf = BookShelf.new(book_shelves_params)
 		book_shelves = BookShelf.where(user_id: current_user.id)

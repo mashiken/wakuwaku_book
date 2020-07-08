@@ -31,9 +31,10 @@
 						タイトル : <%= review.title %><br>
 						本文 : <%= review.text %>
 					</td>
-					<td><%= link_to "詳細情報",  book_path(item.isbn), class: "btn btn-md btn-info" %></td>
+					<td><%= link_to "詳細情報",  book_path(item.isbn), class: "btn btn-md btn-info", style: "color:white;" %></td>
 				<tr>
 			</tbody>
 	    <% end %>
 	<% end %>
+	<%= paginate @reviews, class: "paginate" %>
 </table>

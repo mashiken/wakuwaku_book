@@ -20,19 +20,20 @@
 					<td>
 						<%= attachment_image_tag recommended_book.user, :image, size: "100x100", format: "jpg", fallback:"no_image.jpg" %>
 						<br>
-			      <%= recommended_book.user.nickname %>
-			    </td>
-          <td><%= image_tag(item.medium_image_url) %></td>
-          <td><%= item.title %><br><%= item.title_kana %></td>
+			             <%= recommended_book.user.nickname %>
+					</td>
+	                <td><%= image_tag(item.medium_image_url) %></td>
+	                <td><%= item.title %><br><%= item.title_kana %></td>
 					<td><%= item.author %><br><%= item.author_kana %></td>
 					<td><%= item.publisher_name %></td>
 					<td>
 						タイトル : <%= recommended_book.title %><br>
 						本文 : <%= recommended_book.text %>
 					</td>
-					<td><%= link_to "詳細情報",  book_path(item.isbn), class: "btn btn-md btn-info" %></td>
-        </tr>
+					<td><%= link_to "詳細情報",  book_path(item.isbn), class: "btn btn-md btn-info", style: "color:white;" %></td>
+                </tr>
 			</tbody>
-	  <% end %>
+	    <% end %>
 	<% end %>
+	<%= paginate @recommended_book, class: "paginate" %>
 </table>

@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 class RecommendedBooksController < ApplicationController
+  before_action :authenticate_user!
 
   def show
     @user = User.find(params[:id])
@@ -10,10 +11,10 @@ class RecommendedBooksController < ApplicationController
 
     if params[:recommended_patarn] == "1"
       #オススメしたユーザを取得
-      @recommended_book = RecommendedBook.where(user_id: params[:id])
+      @recommended_book = RecommendedBook.where(user_id: params[:id]).page(params[:page]).per(10)
     elsif params[:recommended_patarn] == "2"
       #オススメされたユーザを取得
-      @recommended_book = RecommendedBook.where(recommended_user_id: params[:id])
+      @recommended_book = RecommendedBook.where(recommended_user_id: params[:id]).page(params[:page]).per(10)
     end
   end
 
@@ -23,7 +24,7 @@ class RecommendedBooksController < ApplicationController
     #MY本棚から書籍を選ぶ場合
     @book_shelves = BookShelf.where(user_id: current_user.id)
     #レビュー一覧から書籍を選ぶ場合取得
-    @reviews = Review.where(user_id: current_user.id)
+    @reviews = Review.where(user_id: current_user.id).page(params[:page]).per(2)
 
     if params[:keyword] == ""
       flash.now[:notice] = '申し訳ございません。お探しの商品が見つかりませんでした。もう一度、ラジオボタン「書籍タイトル」または「著者名」にチェックの上、検索ワードの入力をお願いします。'

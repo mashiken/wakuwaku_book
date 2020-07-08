@@ -12,28 +12,29 @@
 		<tr>
 	</thead>
 
-  <% @recommended_book.each do |recommended_book| %>
-	  <% books = RakutenWebService::Books::Book.search(isbn: recommended_book.book_id.to_i) %>
-	  <% books.each do |item| %>
+    <% @recommended_book.each do |recommended_book| %>
+	    <% books = RakutenWebService::Books::Book.search(isbn: recommended_book.book_id.to_i) %>
+	    <% books.each do |item| %>
 			<tbody>
 				<tr>
 					<td>
-            <% partner_id = recommended_book.recommended_user_id  %>
+                        <% partner_id = recommended_book.recommended_user_id  %>
 						<% partner = User.find(partner_id)  %>
 						<%= attachment_image_tag partner, :image, size: "100x100", format: "jpg", fallback:"no_image.jpg " %>
-            <br><%= partner.nickname %>
-			    </td>
-          <td><%= image_tag(item.medium_image_url) %></td>
-          <td><%= item.title %><br><%= item.title_kana %></td>
+                        <br><%= partner.nickname %>
+			        </td>
+			        <td><%= image_tag(item.medium_image_url) %></td>
+			        <td><%= item.title %><br><%= item.title_kana %></td>
 					<td><%= item.author %><br><%= item.author_kana %></td>
 					<td><%= item.publisher_name %></td>
 					<td>
 						タイトル : <%= recommended_book.title %><br>
 						本文 : <%= recommended_book.text %>
 					</td>
-					<td><%= link_to "詳細情報",  book_path(item.isbn), class: "btn btn-md btn-info" %></td>
-        </tr>
+					<td><%= link_to "詳細情報",  book_path(item.isbn), class: "btn btn-md btn-info", style: "color:white;" %></td>
+                </tr>
 			</tbody>
 	  <% end %>
 	<% end %>
+	<%= paginate @recommended_book, class: "paginate" %>
 </table>

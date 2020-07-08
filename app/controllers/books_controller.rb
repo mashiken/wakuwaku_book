@@ -1,5 +1,6 @@
 
 class BooksController < ApplicationController
+
   def index
   	if params[:keyword] == ""
       flash.now[:notice] = '申し訳ございません。お探しの商品が見つかりませんでした。もう一度、ラジオボタン「書籍タイトル」または「著者名」にチェックの上、検索ワードの入力をお願いします。'
@@ -41,7 +42,7 @@ class BooksController < ApplicationController
   def show
   	@book_details = RakutenWebService::Books::Book.search(isbn: params[:id])
     @review = Review.new
-    @reviews = Review.where(book_id: params[:id])
+    @reviews = Review.where(book_id: params[:id]).page(params[:page]).per(10)
     @book_shelf = BookShelf.new
   end
 end
