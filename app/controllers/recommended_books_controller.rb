@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 class RecommendedBooksController < ApplicationController
+  before_action :authenticate_user!
 
   def show
     @user = User.find(params[:id])

@@ -1,5 +1,6 @@
 
 class BooksController < ApplicationController
+
   def index
   	if params[:keyword] == ""
       flash.now[:notice] = '申し訳ございません。お探しの商品が見つかりませんでした。もう一度、ラジオボタン「書籍タイトル」または「著者名」にチェックの上、検索ワードの入力をお願いします。'
