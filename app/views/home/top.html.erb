@@ -2,21 +2,21 @@
 	<p class="text-success"><%= flash[:notice] %></p>
 	<div class="col-xs-5">
 		<div class="top-image-field">
-      <div id="theTarget">
-        <div><%= image_tag asset_path("img1.jpg", alt: "book-image"), class: "size" %></div>
-        <div><%= image_tag asset_path("img2.jpg", alt: "library-image"), class: "size" %></div>
-        <div><%= image_tag asset_path("img3.jpg", alt: "kids-image"), class: "size" %></div>
-        <div><%= image_tag asset_path("img4.jpg", alt: "Consultation-image"), class: "size" %></div>
-      </div>
-    </div>
+		    <div id="theTarget">
+		        <div><%= image_tag asset_path("img1.jpg", alt: "book-image"), class: "size" %></div>
+		        <div><%= image_tag asset_path("img2.jpg", alt: "library-image"), class: "size" %></div>
+		        <div><%= image_tag asset_path("img3.jpg", alt: "kids-image"), class: "size" %></div>
+		        <div><%= image_tag asset_path("img4.jpg", alt: "Consultation-image"), class: "size" %></div>
+		    </div>
+        </div>
 	</div>
 	<div class="col-xs-6 col-xs-offset-1">
 		<div class="row about">
 			<h2>ようこそ、わくわくブックへ</h2>
-      <p>1.会員登録無しで書籍の検索とレビューを元に購入が出来ます。</p>
-      <p>2.会員登録する事でマイページを持つ事が出来、書籍に対するレビューが可能です。</p>
-      <p>3.また、自分が読んだ書籍を他のユザーに対してオススメする事も出来ます。</p>
-      <p>4.同時にマイページを充実させる事により、他のユザーからあなたに合った書籍をオススメされる場合もあります。</p>
+		    <p>1.会員登録無しで書籍の検索とレビューを元に購入が出来ます。</p>
+		    <p>2.会員登録する事でマイページを持つ事が出来、書籍に対するレビューが可能です。</p>
+		    <p>3.また、自分が読んだ書籍を他のユザーに対してオススメする事も出来ます。</p>
+		    <p>4.同時にマイページを充実させる事により、他のユザーからあなたに合った書籍をオススメされる場合もあります。</p>
 		</div>
 		<div class="row search">
 			<h3>さっそく検索する</h3>
@@ -40,8 +40,8 @@
 		</div>
 		<div class="row login">
 			<h3>さっそく会員登録/ログインをする</h3>
-      <%= link_to "会員登録", new_user_registration_path, class: "btn btn-success col-xs-5" %>
-      <%= link_to "ログイン", new_user_session_path, class: "btn btn-info col-xs-5 col-xs-offset-1" %>
+	        <%= link_to "会員登録", new_user_registration_path, class: "btn btn-success col-xs-5", style: "color:white;"%>
+	        <%= link_to "ログイン", new_user_session_path, class: "btn btn-info col-xs-5 col-xs-offset-1", style: "color:white;" %>
 		</div>
 	</div>
 </div>

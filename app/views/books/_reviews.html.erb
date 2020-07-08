@@ -19,7 +19,7 @@
   			<td><%= review.text %></td>
   			<td>
   				<% if current_user %>
-  				  <%= link_to '削除する',  review_path(review), method: :delete, remote: true, class: "btn btn-sm btn-danger" %>
+  				  <%= link_to '削除する',  review_path(review), method: :delete, remote: true, class: "btn btn-sm btn-danger", style: "color:white;" %>
   				<% end %>
   			</td>
   		</tr>

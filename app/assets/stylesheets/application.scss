@@ -16,6 +16,12 @@
  @import "bootstrap-sprockets";
  @import "bootstrap";
 
+body {
+  a:link {color:black; text-decoration:none }
+  a:visited { color:black; text-decoration:none }
+  a:hover { color:black; text-decoration:none }
+  a:active { color:black; text-decoration:none }
+ }
 
 
 /* ヘッダー・フッター設定 */

@@ -22,8 +22,8 @@
 					<td><%= item.author %><br><%= item.author_kana %></td>
 					<td><%= item.publisher_name %></td>
 					<td><%= item.sales_date %></td>
-					<td><%= link_to "書籍決定",  finish_recommended_book_path(id: recommended_user.id, book_id: book_shelf.book_id), class: "btn btn-md btn-success" %></td>
-					<td><%= link_to "詳細情報",  book_path(item.isbn), class: "btn btn-md btn-info" %></td>
+					<td><%= link_to "書籍決定",  finish_recommended_book_path(id: recommended_user.id, book_id: book_shelf.book_id), class: "btn btn-md btn-success", style: "color:white;" %></td>
+					<td><%= link_to "詳細情報",  book_path(item.isbn), class: "btn btn-md btn-info", style: "color:white;" %></td>
 				<tr>
 			</tbody>
 	    <% end %>
