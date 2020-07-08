@@ -4,21 +4,16 @@ class UsersController < ApplicationController
   before_action :authenticate_user!
 
   def index
-    @users = User.all
+    @users = User.page(params[:page]).per(10)
   end
 
   def show
-    if user_signed_in?
-      @user = User.find(params[:id])
-      @reviews = Review.where(user_id: params[:id])
-      @recommended = RecommendedBook.where(user_id: params[:id])
-      @recommended_user = RecommendedBook.where(recommended_user_id: params[:id])
+    @user = User.find(params[:id])
+    @reviews = Review.where(user_id: params[:id])
+    @recommended = RecommendedBook.where(user_id: params[:id])
+    @recommended_user = RecommendedBook.where(recommended_user_id: params[:id])
 
-      @book_shelves = BookShelf.where(user_id: params[:id])
-    else
-      flash[:notice] = "下記ボタンより「会員登録」または「ログイン」をお願いします。"
-      redirect_to root_path
-    end
+    @book_shelves = BookShelf.where(user_id: params[:id])
   end
 
   def edit

@@ -1,14 +1,15 @@
 
-<% reviews.each do |review| %>
-	<table class=' table table-hover table-inverse'>
-  	<thead>
-  		<tr>
-  			<th>投稿ユーザー</th>
-  			<th>タイトル</th>
-  			<th>本文</th>
-  			<th></th>
-  		</tr>
-  	</thead>
+
+<table class=' table table-hover table-inverse'>
+	<thead>
+		<tr>
+			<th>投稿ユーザー</th>
+			<th>タイトル</th>
+			<th>本文</th>
+			<th></th>
+		</tr>
+	</thead>
+  <% reviews.each do |review| %>
   	<tbody>
   		<tr>
   			<td>
@@ -24,5 +25,6 @@
   			</td>
   		</tr>
   	</tbody>
-　</table>
-<% end %>
+  <% end %>
+  <%= paginate reviews, class: "paginate" %>
+</table>
