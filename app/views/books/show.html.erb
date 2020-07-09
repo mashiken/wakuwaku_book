@@ -2,7 +2,7 @@
 
 <% @book_details.each do |book_detail| %>
   <div class="row">
-    <div class="col-xs-4">
+    <div class="col-md-4 col-xs-12">
       <%= image_tag(book_detail.large_image_url) %>
       <!-- 本棚作成フォーム bookshelf/create -->
       <div class="book-shelves-form">
@@ -18,7 +18,7 @@
         <%= link_to "楽天で本を買う" , book_detail.item_url, class: "btn btn-sm btn-success rakuten-link-field", style: "color:white;" %>
       </div>
     </div>
-    <div class="col-xs-8">
+    <div class="col-md-8 col-xs-12 book-show-field">
       <div class="row">
         <table class="table table-hover table-inverse">
           <tbody>

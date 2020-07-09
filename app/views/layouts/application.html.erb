@@ -4,49 +4,52 @@
     <title>WakuwakuBook</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
     <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
 　　<link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick-theme.css"/>
     <script type="text/javascript" src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+    <link href=”css/bootstrap.min.css” rel=”stylesheet”>
+    <link href=”css/bootstrap-responsive.min.css” rel=”stylesheet”>
   </head>
 
-  <header class="navbar navbar-black header" style="background-color:#afeeee;">
-    <div class="container">
-      <nav class="navbar-header navbar-left">
-        <h2><%= link_to "わくわくブック", root_path%></h2>
-      </nav>
-      <nav>
-        <ul class="nav navbar-nav navbar-right">
-        <% if user_signed_in? %>
-          <p class="navbar-text navbar-left">ようこそ、<%= current_user.nickname %>さん！</p>
-          <li class="h-100"><%= link_to "マイページ", user_path(current_user.id) %></li>
-          <li class="h-100"><%= link_to 'ユザー一覧', users_path %></li>
-          <li class="h-100"><%= link_to '書籍検索', books_path %></li>
-          <li class="h-100"><%= link_to 'ログアウト', destroy_user_session_path, method: :delete %></li>
-        <% else %>
-          <li class="h-100"><%= link_to '書籍検索', books_path %></li>
-          <li><%= link_to '会員登録', new_user_registration_path %></li>
-          <li><%= link_to 'ログイン', new_user_session_path %></li>
-        <% end %>
-        </ul>
-      </nav>
-    </div>
-  </header>
-
-
   <body>
-    <div class="main">
+    <div class="wrapper">
+      <header>
+        <div id="header">
+          <div class="container">
+            <nav class="navbar-header navbar-left">
+              <%= link_to "わくわくブック", root_path, class: "navbar-brand"%>
+            </nav>
+            <nav>
+              <ul class="nav navbar-nav navbar-right" data-hover="dropdown" data-animations="zoomIn fadeIn fadeInUp fadeIn">
+                <% if user_signed_in? %>
+                  <p class="navbar-text navbar-left">ようこそ、<%= current_user.nickname %>さん！</p>
+                  <li><%= link_to "マイページ", user_path(current_user.id) %></li>
+                  <li><%= link_to 'ユザー一覧', users_path %></li>
+                  <li><%= link_to '書籍検索', books_path %></li>
+                  <li><%= link_to 'ログアウト', destroy_user_session_path, method: :delete %></li>
+                <% else %>
+                  <li><%= link_to '書籍検索', books_path %></li>
+                  <li><%= link_to '会員登録', new_user_registration_path %></li>
+                  <li><%= link_to 'ログイン', new_user_session_path %></li>
+                <% end %>
+              </ul>
+            </nav>
+          </div>
+        </div>
+      </header>
+
       <div class="container">
         <%= yield %>
       </div>
+
+      <footer>
+        <div id="header">
+          <p>(c)copy right</p>
+        </div>
+      </footer>
     </div>
   </body>
-
-  <footer class="footer fixed-bottom" style="background-color:#afeeee;">
-    <div class="container">
-      <p class="text-muted">@CopyRight NaganoCake.inc</p>
-    </div>
-  </footer>
 </html>

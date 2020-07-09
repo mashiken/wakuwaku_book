@@ -17,7 +17,7 @@
 <%= form_with model: @recommended_book , method: :post, local: true do |form| %>
 
   <div class="row">
-    <div class="col-xs-4">
+    <div class="col-md-4 col-xs-12">
       <% @book_details.each do |book_detail| %>
           <%= image_tag(book_detail.large_image_url) %><br>
           <div class="recommend-field">
@@ -26,7 +26,7 @@
         <%= form.hidden_field :book_id, :value => book_detail.isbn %>
       <% end %>
     </div>
-    <div class="col-xs-8">
+    <div class="col-md-8 col-xs-12">
       <div class="recommend-field">
         <p style="font-weight:bold">おすすめタイトル</p>
         <em>2文字以上、50文字以内でお願いします。</em>
