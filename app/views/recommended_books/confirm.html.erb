@@ -3,18 +3,18 @@
 <!-- オススメ書籍検索画面 -->
 <div class="row recommend_book_choice_field">
   <%= form_with url: confirm_recommended_book_path(@recommended_user), method: :get, local: true do |form| %>
-  <div class="col-xs-8">
+  <div class="col-lg-11 col-xs-8 row row-no-gutters">
     <!-- 宛名 -->
     <h5><%= @recommended_user.nickname %>さんへ</h5>
     <!-- 書籍選択方法をラジオボタンで選ぶ -->
-    <%= form.radio_button :recommended, :shilf,  class:"radio_button" %>
-  　<%= form.label :recommended, "本棚書籍からオススメ", {value: :title, style: "display: inline-block;", class:"radio_button_text"} %>
-    <%= form.radio_button :recommended, :review,  class:"radio_button" %>
-  　<%= form.label :recommended, "レビュー一覧からオススメ", {value: :review, style: "display: inline-block;", class:"radio_button_text"} %>
-    <%= form.radio_button :recommended, :search,  class:"radio_button" %>
-  　<%= form.label :recommended, "オススメしたい書籍を検索する", {value: :search, style: "display: inline-block;", class:"radio_button_text"} %>
+    <%= form.radio_button :recommended, :shilf,  class:"radio_button col-lg-1 col-xs-2" %>
+  　<%= form.label :recommended, "本棚書籍からオススメ", {value: :title, style: "display: inline-block;", class:"radio_button_text col-lg-2 col-xs-9"} %>
+    <%= form.radio_button :recommended, :review,  class:"radio_button col-lg-1 col-xs-2" %>
+  　<%= form.label :recommended, "レビュー一覧からオススメ", {value: :review, style: "display: inline-block;", class:"radio_button_text col-lg-2 col-xs-9"} %>
+    <%= form.radio_button :recommended, :search,  class:"radio_button col-lg-1 col-xs-2" %>
+  　<%= form.label :recommended, "オススメしたい書籍を検索する", {value: :search, style: "display: inline-block;", class:"radio_button_text col-lg-4 col-xs-9"} %>
   </div>
-  <div class="col-xs-4 button_position">
+  <div class="col-lg-1 col-xs-4 button_position">
     <%= form.submit '検索', class: "btn btn-lg btn-success " %>
   </div>
   <% end %>

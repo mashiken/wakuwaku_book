@@ -1,3 +1,21 @@
 // Place all the styles related to the reviews controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+@media screen and (max-width:1024px) {
+  .wrapper {
+    padding-top: 120px;
+  }
+}
+
+@media screen and (max-width:768px) {
+  .wrapper {
+    padding-top: 300px;
+  }
+}
+
+@media screen and (max-width:425px) {
+  .review_field {
+    font-size: 3px;
+  }
+}

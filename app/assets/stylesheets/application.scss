@@ -16,42 +16,80 @@
  @import "bootstrap-sprockets";
  @import "bootstrap";
 
+*{
+  padding:0;
+  maegin:0;
+  box-sizing: border-box;
+}
+
 body {
   a:link {color:black; text-decoration:none }
   a:visited { color:black; text-decoration:none }
-  a:hover { color:black; text-decoration:none }
+  a:hover { color:black; text-decoration:underline}
   a:active { color:black; text-decoration:none }
  }
 
 
+* {
+  font-family: 'Avenir','Helvetica Neue','Helvetica','Arial','Hiragino Sans','ヒラギノ角ゴシック',YuGothic,'Yu Gothic','メイリオ', Meiryo,'ＭＳ Ｐゴシック','MS PGothic'  
+}
+
 /* ヘッダー・フッター設定 */
-html {
-  position: relative;
-  min-height: 100%;
-}
-
 body {
-  /* Margin bottom by footer height */
-     margin: 120px 0 120px 0;
+  position: relative;
 }
 
-.header{
-    position: absolute;
-    top: 0;
-    width: 100%;
-    margin-bottom: 10px;
-    height: 60px;
+.navbar-brand {
+  font-size: 40px;
 }
 
-.footer {
-  position: absolute;
-  bottom: 0;
+.wrapper{
+  min-height: 900px;
+  position: relative;
+  padding-top: 120px;
+  padding-bottom: 120px;
+  box-sizing: border-box;
+
+  position: absolute;/*←wrapper topをbodyに合わせる*/
+  top: 0; /*上に固定*/
   width: 100%;
-  /* Set the fixed height of the footer here */
-  height: 60px;
-  margin-top: 10px;
-  background-color: #afeeee;
+}
+
+header{
+  width: 100%;
+  padding-bottom: 30px;
+  background-color: red;
+
+  position: absolute;/*←header topをwrapperに合わせる*/
+  top: 0;
 }
 
 
+footer{
+    width: 100%;
+    color: #fff;
+    text-align: center;
+    padding: 30px 0;
+
+    position: absolute;/*←footer bottomをwrapperに合わせる*/
+    bottom: 0; /*下に固定*/
+}
+
+@media screen and (max-width:1024px) {
+  .wrapper {
+    padding-top: 150px;
+  }
+}
+
+@media screen and (max-width:768px) {
+  .wrapper {
+    padding-top: 320px;
+  }
+}
+
+@media screen and (max-width:425px) {
+  .wrapper {
+    padding-top: 320px;
+  }
+}
 

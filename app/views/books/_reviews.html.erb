@@ -1,30 +1,34 @@
 
+<div class="table-responsive">
+  <table class=' table table-hover table-inverse'>
+    <thead>
+      <tr>
+        <th>投稿ユーザー</th>
+        <th>タイトル</th>
+        <th>本文</th>
+        <th></th>
+      </tr>
+    </thead>
+    <% reviews.each do |review| %>
+      <tbody>
+        <tr>
+          <td>
+            <%= link_to user_path(review.user) do %>
+              <%= attachment_image_tag review.user, :image, size: "100x100", format: "jpg", fallback:"no_image.jpg" %><br>
+              <%= review.user.nickname %>
+            <% end %>
+          </td>
+          <td><%= review.title %></td>
+          <td><%= review.text %></td>
+          <td>
+            <% if current_user.id == review.user_id %>
+              <%= link_to '削除する',  review_path(review), method: :delete, remote: true, class: "btn btn-sm btn-danger", style: "color:white;" %>
+            <% end %>
+          </td>
+        </tr>
+      </tbody>
+    <% end %>
+    <%= paginate reviews, class: "paginate" %>
+  </table>
+</div>
 
-<table class=' table table-hover table-inverse'>
-	<thead>
-		<tr>
-			<th>投稿ユーザー</th>
-			<th>タイトル</th>
-			<th>本文</th>
-			<th></th>
-		</tr>
-	</thead>
-  <% reviews.each do |review| %>
-  	<tbody>
-  		<tr>
-  			<td>
-  				<%= attachment_image_tag review.user, :image, size: "100x100", format: "jpg", fallback:"no_image.jpg" %><br>
-  				<%= review.user.nickname %>
-  			</td>
-  			<td><%= review.title %></td>
-  			<td><%= review.text %></td>
-  			<td>
-  				<% if current_user %>
-  				  <%= link_to '削除する',  review_path(review), method: :delete, remote: true, class: "btn btn-sm btn-danger", style: "color:white;" %>
-  				<% end %>
-  			</td>
-  		</tr>
-  	</tbody>
-  <% end %>
-  <%= paginate reviews, class: "paginate" %>
-</table>
