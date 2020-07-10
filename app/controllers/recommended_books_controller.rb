@@ -2,6 +2,7 @@
 
 class RecommendedBooksController < ApplicationController
   before_action :authenticate_user!
+  before_action :user_is_valid?, only: [:confirm, :finish, :show]
 
   def show
     @user = User.find(params[:id])
@@ -93,4 +94,11 @@ class RecommendedBooksController < ApplicationController
     params.require(:recommended_book).permit(:user_id,:recommended_user_id, :book_id,:title,:text)
   end
 
+  def user_is_valid?
+    #退会済ユーザーに関するビューを表示させない
+    user = User.find(params[:id])
+    if user.is_valid == false
+      redirect_to user_path(current_user)
+    end
+  end
 end
