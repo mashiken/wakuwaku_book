@@ -9,6 +9,7 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
+    #退会済ユーザーページを閲覧しようとした時、マイページへ。
     @reviews = Review.where(user_id: params[:id])
     @recommended = RecommendedBook.where(user_id: params[:id])
     @recommended_user = RecommendedBook.where(recommended_user_id: params[:id])
@@ -17,7 +18,12 @@ class UsersController < ApplicationController
   end
 
   def edit
-    @user = current_user
+    #自分以外のユーザーが編集する事は不可
+    if params[:id] == current_user.id
+      @user = current_user
+    else
+      redirect_to user_path(current_user.id)
+    end
   end
 
   def update
