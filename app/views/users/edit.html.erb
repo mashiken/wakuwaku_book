@@ -3,7 +3,6 @@
   <div class="alert alert-danger">
     <div>
       <h2><%= pluralize(@user.errors.count, "件") %> のエラーです。</h2>
-
       <ul>
         <% @user.errors.full_messages.each do |message| %>
           <li><%= message %></li>
