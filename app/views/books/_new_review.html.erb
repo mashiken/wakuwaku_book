@@ -1,13 +1,15 @@
 <% if review.errors.any? %>
+  <div class="alert alert-danger">
     <div>
-        <h2><%= pluralize(review.errors.count, "error") %> prohibited this book from being saved:</h2>
+      <h2><%= pluralize(review.errors.count, "件") %> のエラーです。</h2>
 
-        <ul>
-            <% review.errors.full_messages.each do |message| %>
-                <li><%= message %></li>
-            <% end %>
-        </ul>
+      <ul>
+        <% review.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
     </div>
+  </div>
 <% end %>
 
 

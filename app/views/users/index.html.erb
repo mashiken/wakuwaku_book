@@ -1,27 +1,30 @@
 <h4>ユザー一覧</h4>
-<table class=' table table-hover table-inverse'>
-	<thead>
-		<tr>
-			<th colspan="2">ユーザー名</th>
-			<th>性別</th>
-			<th>年齢</th>
-			<th>職業</th>
-			<th>プロフィール</th>
-		</tr>
-	</thead>
-	<% @users.each do |user| %>
-  	<%= link_to(user_path(user.id), class: 'list-content') do %>
-	  	<tbody>
-	  		<tr>
-	  			<td><%= link_to ( attachment_image_tag user, :image, size: "100x100", format: "jpg", fallback:"no_image.jpg" ), user_path(user) %></td>
-	  			<td><%= link_to user.nickname, user_path(user) %></td>
-	  			<td><%= user.gender %></td>
-	  			<td><%= user.age %></td>
-	  			<td><%= user.profession %></td>
-	  			<td><%= user.profile %></td>
-	  		</tr>
-	  	</tbody>
+<div class="table-responsive">
+	<p>★ユーザー画像をクリックすると、そのユーザーのページに移動します。</p>
+	<table class=' table table-hover table-inverse'>
+		<thead>
+			<tr>
+				<th class="col-xs-4" colspan="2">ユーザー名</th>
+				<th class="col-xs-1">性別</th>
+				<th class="col-xs-1">年齢</th>
+				<th class="col-xs-2">職業</th>
+				<th class="col-xs-4">プロフィール</th>
+			</tr>
+		</thead>
+		<% @users.each do |user| %>
+	  	<%= link_to(user_path(user.id), class: 'list-content') do %>
+		  	<tbody>
+		  		<tr>
+		  			<td class="col-xs-2"><%= link_to ( attachment_image_tag user, :image, size: "100x100", format: "jpg", fallback:"no_image.jpg" ), user_path(user) %></td>
+		  			<td class="col-xs-2"><%= link_to user.nickname, user_path(user) %></td>
+		  			<td class="col-xs-1"><%= user.gender.truncate(10, omission: '………') %></td>
+		  			<td class="col-xs-1"><%= user.age %></td>
+		  			<td class="col-xs-2"><%= user.profession %></td>
+		  			<td class="col-xs-4"><%= user.profile.truncate(100, omission: '………') %></td>
+		  		</tr>
+		  	</tbody>
+		  <% end %>
 	  <% end %>
-  <% end %>
-  <%= paginate @users, class: "paginate" %>
-</table>
+	  <%= paginate @users, class: "paginate" %>
+	</table>
+</div>

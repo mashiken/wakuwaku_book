@@ -1,0 +1,9 @@
+ja:
+  activerecord:
+    models:
+      review: レビュー
+    attributes:
+      review:
+        title: 「レビュータイトル」欄
+        text: 「レビュー文」欄
+
