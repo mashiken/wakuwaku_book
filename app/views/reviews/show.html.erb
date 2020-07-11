@@ -7,49 +7,6 @@
 
 <p>★商品画像やタイトルをクリックすると、書籍の詳細ページに移動します。</p>
 
-<div class="table-responsive">
-	<table class=' table table-hover table-inverse'>
-		<thead>
-			<tr>
-				<th>書籍画像</th>
-				<th>書籍タイトル / カナ</th>
-				<th>著者名 / カナ</th>
-				<th>出版社名</th>
-				<th>いいね</th>
-				<th>レビュー文</th>
-			<tr>
-		</thead>
-
-	  　<% @reviews.each do |review| %>
-		　　<% books = RakutenWebService::Books::Book.search(isbn: review.book_id.to_i) %>
-	  　　　<% books.each do |item| %>
-				<tbody>
-					<tr>
-						<td><%= link_to image_tag(item.medium_image_url), book_path(item.isbn) %></td>
-						<td><%= link_to item.title, book_path(item.isbn) %><br><%= link_to item.title_kana, book_path(item.isbn) %></td>
-						<td><%= item.author %><br><%= item.author_kana %></td>
-						<td><%= item.publisher_name %></td>
-						<td>
-							<% if review.favorited_by?(current_user) %>
-							    <%= link_to review_favorites_path(review), method: :delete, remote: true do %>
-								    <i class="fa fa-heart" aria-hidden="true" style="color: red;"></i>
-								    <%= review.favorites.count %>
-							    <% end %>
-							<% else %>
-							    <%= link_to review_favorites_path(review), method: :post, remote: true do %>
-								    <i class="fa fa-heart-o" aria-hidden="true"></i>
-								    <%= review.favorites.count %>
-							    <% end %>
-							<% end %>
-						</td>
-						<td>
-							タイトル : <%= review.title %><br>
-							本文 : <%= review.text %>
-						</td>
-					<tr>
-				</tbody>
-		    <% end %>
-		<% end %>
-		<%= paginate @reviews, class: "paginate" %>
-	</table>
+<div id="my-review-field">
+	<%= render partial: "reviews/reviews", locals: { reviews: @reviews } %>
 </div>
