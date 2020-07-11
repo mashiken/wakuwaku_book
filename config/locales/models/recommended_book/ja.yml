@@ -1,0 +1,8 @@
+ja:
+  activerecord:
+    models:
+      recommended_book: オススメ書籍
+    attributes:
+      recommended_book:
+        title: 「おすすめタイトル」欄
+        text: 「おすすめテキスト」欄

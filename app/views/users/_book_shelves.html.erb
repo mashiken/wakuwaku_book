@@ -1,0 +1,17 @@
+<h4>MY 本棚</h4>
+<div class="clearfix">
+	<% book_shelves.each do |book_shelf| %>
+	<% books = RakutenWebService::Books::Book.search(isbn: book_shelf.book_id.to_i) %>
+		<div class="book_shelf_books">
+			<% books.each do |book| %>
+			  	<div>
+				  	<%= link_to (image_tag(book.medium_image_url)), book_path(book_shelf.book_id.to_i) %><br>
+				  	<%= book.title %>
+					<% if @user.id == current_user.id %>
+					  <div class="button"><%= link_to "削除",  book_shelf_path(id: book_shelf.id), method: :delete, remote: true, class: "btn btn-xs btn-danger btn-block", style: "color:white;" %></div>
+					<% end %>
+			    </div>
+		  <% end %>
+		</div>
+  <% end %>
+</div>

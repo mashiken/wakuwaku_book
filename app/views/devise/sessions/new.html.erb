@@ -3,7 +3,7 @@
   <p class="alert alert-notice"><%= notice %></p>
 <% end %>
 <% if alert %>
-  <p class="alert alert-error"><%= alert %></p>
+  <p class="alert alert-error alert-danger"><%= alert %></p>
 <% end %>
 <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
   <div class="field">

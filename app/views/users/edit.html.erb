@@ -1,16 +1,17 @@
 <h4>編集</h4>
-
 <% if @user.errors.any? %>
+  <div class="alert alert-danger">
     <div>
-        <h2><%= pluralize(@user.errors.count, "error") %> prohibited this book from being saved:</h2>
-
-        <ul>
-            <% @user.errors.full_messages.each do |message| %>
-                <li><%= message %></li>
-            <% end %>
-        </ul>
+      <h2><%= pluralize(@user.errors.count, "件") %> のエラーです。</h2>
+      <ul>
+        <% @user.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
     </div>
+  </div>
 <% end %>
+
 
 <%= form_with model: @user ,url: user_path(@user) , method: :patch, local: true do |f| %>
   <div class="field">

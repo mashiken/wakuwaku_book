@@ -67,11 +67,13 @@
   <% end %>
   <!-- レビュー一覧を表示 -->
   <h4>レビュー一覧</h4>
-  <% if @reviews.present? %>
-    <%= render partial: "books/reviews", locals: { reviews: @reviews } %>
-  <% else %>
-    <h3 style="color:red">現在、投稿レビューはありません。<h3>
-  <% end %>
+  <div id="review-index">
+    <% if @book_reviews.present? %>
+      <%= render partial: "books/reviews", locals: { reviews: @book_reviews } %>
+    <% else %>
+      <h3 style="color:red">現在、投稿レビューはありません。</h3>
+    <% end %>
+  </div>
 </div>
 
 

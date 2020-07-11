@@ -6,10 +6,10 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
-  has_many :reviews
+  has_many :reviews, dependent: :destroy
   has_many :recommended_books
-  has_many :favorites
-  has_many :book_shelfs
+  has_many :favorites, dependent: :destroy
+  has_many :book_shelves
   attachment :image
 
   validates :nickname,  presence: true, length: {maximum: 50, minimum: 2}
