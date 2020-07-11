@@ -75,7 +75,7 @@ class RecommendedBooksController < ApplicationController
     @recommended_book = RecommendedBook.new(recommended_book_params)
     @recommended_book.user_id = current_user.id
     if @recommended_book.save
-      flash.now[:notice] = 'オススメ成功しました'
+      flash[:notice] = 'オススメ成功しました'
       redirect_to user_path(current_user) and return
     else
       #finishへrenderで返すのに必要/valitationErrorで必要

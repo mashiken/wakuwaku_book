@@ -1,7 +1,11 @@
 <% if @user.is_valid == false %>
 	<h4 class="text-danger">このユーザーは退会となりました。</h4>
 <% else %>
-	<p class="text-success"><%= flash[:notice] %></p>
+    <%if flash[:notice] %>
+	    <div class="alert alert-success">
+	    	<p><%= flash[:notice] %></p>
+	    </div>
+	<% end %>
 
 	<h4>登録情報</h4>
 	<!-- ユザーに関するの書籍レビュー/おすすめ数へのリンク -->
