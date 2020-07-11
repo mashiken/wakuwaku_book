@@ -6,8 +6,9 @@
 				<th>書籍タイトル / カナ</th>
 				<th>著者名 / カナ</th>
 				<th>出版社名</th>
-				<th>いいね</th>
+				<th>いいね数</th>
 				<th>レビュー文</th>
+				<th>投稿日</th>
 			<tr>
 		</thead>
 
@@ -37,6 +38,7 @@
 							タイトル : <%= review.title %><br>
 							本文 : <%= review.text %>
 						</td>
+						<td><%= review.created_at.strftime('%Y/%m/%d %H:%M') %></td>
 					<tr>
 				</tbody>
 		    <% end %>

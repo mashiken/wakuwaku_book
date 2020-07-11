@@ -42,7 +42,7 @@ class BooksController < ApplicationController
   def show
   	@book_details = RakutenWebService::Books::Book.search(isbn: params[:id])
     @review = Review.new
-    @reviews = Review.where(book_id: params[:id]).page(params[:page]).reverse_order.per(10)
+    @book_reviews = Review.where(book_id: params[:id]).page(params[:page]).reverse_order.per(10)
     @book_shelf = BookShelf.new
   end
 end

@@ -21,7 +21,7 @@
 					<tr>
 						<td>
 							<%= link_to user_path(recommended_book.user.id) do %>
-								<%= attachment_image_tag recommended_book.user, :image, size: "100x100", format: "jpg", fallback:"no_image.jpg" %>
+								<%= attachment_image_tag recommended_book.user, :image, size: "100x100", format: "jpg", fallback:"/assets/no_image.jpg" %>
 								<br>
 					            <%= recommended_book.user.nickname %>
 				            <% end %>
