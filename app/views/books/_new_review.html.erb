@@ -13,7 +13,7 @@
 <% end %>
 
 
-<%= form_with model: review, method: :post, local: true do |f| %>
+<%= form_with model: review, method: :post do |f| %>
 　<div class="form-group">
 		<%= f.label :title, "レビュータイトル" %>
     <em>　2文字以上、50文字以内でお願いします。</em>

@@ -5,7 +5,7 @@ class ReviewsController < ApplicationController
 
   def show
     @user = User.find(params[:id])
-    @reviews = Review.where(user_id: params[:id]).page(params[:page]).per(10)
+    @reviews = Review.where(user_id: params[:id]).page(params[:page]).reverse_order.per(10)
     @recommended = RecommendedBook.where(user_id: params[:id])
     @recommended_user = RecommendedBook.where(recommended_user_id: params[:id])
   end
@@ -13,21 +13,40 @@ class ReviewsController < ApplicationController
   def create
   	@review = Review.new(reviews_params)
   	@review.user_id = current_user.id
-  	if @review.save
-  		redirect_to book_path(@review.book_id)
-  	else
-      #books/showへrenderで返すのに必要/valitationErrorで必要
-      @book_details = RakutenWebService::Books::Book.search(isbn: @review.book_id.to_i)
-      @reviews = Review.where(book_id:  @review.book_id.to_i).page(params[:page]).per(10)
-      @book_shelf = BookShelf.new
-      render "books/show"
-  	end
+
+    #books/showへ非同期で必要
+    @book_details = RakutenWebService::Books::Book.search(isbn: @review.book_id.to_i)
+    @book_shelf = BookShelf.new
+
+    if @review.save
+      @reviews = Review.where(book_id:  @review.book_id.to_i).page(params[:page]).reverse_order.per(10)
+      @review = Review.new
+      #books/create.js.erbへ非同期処理
+      respond_to do |format|
+        format.js { render :file => "/books/create.js.erb" }
+      end
+    else
+      #books/showへ非同期で必要
+      @reviews = Review.where(book_id:  @review.book_id.to_i).page(params[:page]).reverse_order.per(10)
+      #books/create.js.erbへ非同期処理
+      respond_to do |format|
+        format.js { render :file => "/books/create.js.erb" }
+      end
+    end
+
   end
 
   def destroy
-    @review = Review.find_by(params[:id])
+    @review = Review.find(params[:id])
     @review.destroy
-    redirect_to book_path(@review.book_id)
+
+    @book_details = RakutenWebService::Books::Book.search(isbn: @review.book_id.to_i)
+    @reviews = Review.where(book_id:  @review.book_id.to_i).page(params[:page]).per(10)
+    @book_shelf = BookShelf.new
+
+    respond_to do |format|
+      format.js { render :file => "/books/destroy.js.erb" }
+    end
   end
 
   private

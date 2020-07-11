@@ -31,7 +31,7 @@ body {
 
 
 * {
-  font-family: 'Avenir','Helvetica Neue','Helvetica','Arial','Hiragino Sans','ヒラギノ角ゴシック',YuGothic,'Yu Gothic','メイリオ', Meiryo,'ＭＳ Ｐゴシック','MS PGothic'  
+  font-family: 'Avenir','Helvetica Neue','Helvetica','Arial','Hiragino Sans','ヒラギノ角ゴシック',YuGothic,'Yu Gothic','メイリオ', Meiryo,'ＭＳ Ｐゴシック','MS PGothic'
 }
 
 /* ヘッダー・フッター設定 */
@@ -73,6 +73,7 @@ footer{
 
     position: absolute;/*←footer bottomをwrapperに合わせる*/
     bottom: 0; /*下に固定*/
+    left: 0;
 }
 
 @media screen and (max-width:1024px) {

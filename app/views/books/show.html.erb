@@ -67,6 +67,7 @@
   <% end %>
   <!-- レビュー一覧を表示 -->
   <h4>レビュー一覧</h4>
+  <div id="review-index">
   <% if @reviews.present? %>
     <%= render partial: "books/reviews", locals: { reviews: @reviews } %>
   <% else %>

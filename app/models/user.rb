@@ -9,7 +9,7 @@ class User < ApplicationRecord
   has_many :reviews
   has_many :recommended_books
   has_many :favorites
-  has_many :book_shelfs
+  has_many :book_shelves
   attachment :image
 
   validates :nickname,  presence: true, length: {maximum: 50, minimum: 2}
