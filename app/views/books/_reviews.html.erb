@@ -23,7 +23,7 @@
           <td><%= review.text %></td>
           <td><%= review.created_at.strftime('%Y/%m/%d %H:%M') %></td>
           <td>
-            <% if current_user.id == review.user_id %>
+            <% if current_user == review.user %>
               <%= link_to '削除する',  review_path(review), method: :delete, remote: true, class: "btn btn-sm btn-danger", style: "color:white;" %>
             <% end %>
           </td>
