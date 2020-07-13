@@ -17,6 +17,5 @@
                password_confirmation: password)
 end
 
-if Rails.env.development?
-  AdminUser.create!(email: 'admin@example.com', password: '33333333', password_confirmation: '33333333')
-end
+
+AdminUser.create!(email: 'admin@example.com', password: '33333333', password_confirmation: '33333333')

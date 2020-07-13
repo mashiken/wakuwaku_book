@@ -1,5 +1,9 @@
 <div class="row">
-	<p class="text-success"><%= flash[:notice] %></p>
+	<%if flash[:notice] %>
+	  <div class="alert alert-success">
+	    <p><%= flash[:notice] %></p>
+	  </div>
+	<% end %>
 	<div class="col-lg-5 col-sm-12">
 		<div class="top-image-field">
 		    <div id="theTarget">

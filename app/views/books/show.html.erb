@@ -1,3 +1,10 @@
+<%if flash[:notice] %>
+  <div class="alert alert-danger">
+    <p><%= flash[:notice] %></p>
+  </div>
+<% end %>
+
+
 <h2>書籍詳細</h2>
 
 <% @book_details.each do |book_detail| %>

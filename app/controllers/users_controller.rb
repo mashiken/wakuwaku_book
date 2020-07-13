@@ -2,7 +2,7 @@
 
 class UsersController < ApplicationController
   before_action :authenticate_user!
-  before_action :user_is_valid?, only: [:edit, :confirm, :hide]
+  before_action :user_is_valid?, only: [:edit]
 
   def index
     @users = User.page(params[:page]).per(10)
@@ -30,6 +30,7 @@ class UsersController < ApplicationController
   def update
     @user = User.find(params[:id])
     if @user.update(user_params)
+       flash[:notice] = "プロフィール編集完了しました。"
       redirect_to user_path(current_user.id)
     else
       render "edit"
