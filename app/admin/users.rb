@@ -1,5 +1,5 @@
 ActiveAdmin.register User do
-  #actions :all
+  # actions :all
 
   # See permitted parameters documentation:
   # https://github.com/activeadmin/activeadmin/blob/master/docs/2-resource-customization.md#setting-up-strong-parameters
@@ -15,6 +15,6 @@ ActiveAdmin.register User do
   #   permitted << :other if params[:action] == 'create' && current_user.admin?
   #   permitted
   # end
-  #全てのパラメーターを許可する。
+  # 全てのパラメーターを許可する。
   permit_params { User.attribute_names.map(&:to_sym) }
 end
