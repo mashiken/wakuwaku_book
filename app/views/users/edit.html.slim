@@ -1,0 +1,33 @@
+h4
+  | 編集
+- if @user.errors.any?
+  .alert.alert-danger
+    div
+      h2
+        = pluralize(@user.errors.count, "件")
+        |  のエラーです。
+      ul
+        - @user.errors.full_messages.each do |message|
+          li
+            = message
+= form_with model: @user ,url: user_path(@user) , method: :patch, local: true do |f|
+  .field
+    = f.label :image, "ユーザー画像"
+    = f.attachment_field :image
+  .field
+    = f.label :nickname, "ニックネーム"
+    = f.text_field :nickname, autofocus: true, class: "form-control"
+  .field
+    = f.label :gender, "性別(未記入でも大丈夫です。)"
+    = f.text_field :gender, autofocus: true, class: "form-control"
+  .field
+    = f.label :age, "年齢(未記入でも大丈夫です。)"
+    = f.number_field :age, autofocus: true, class: "form-control"
+  .field
+    = f.label :profession, "職業(未記入でも大丈夫です。)"
+    = f.text_field :profession, autofocus: true, class: "form-control"
+  .field
+    = f.label :profile, "プロフィール(未記入でも大丈夫です。)"
+    = f.text_area :profile, autofocus: true,  size: "20x5", class:"form-control"
+  .actions
+    = f.submit "登録する"

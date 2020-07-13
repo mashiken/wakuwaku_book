@@ -1,0 +1,32 @@
+h4
+  | 会員登録
+p
+  | 登録すると「マイページ」を持つ事ができます。マイページから本のレビューや本を他ユザーへの紹介する事ができます。
+  br
+  |  また他のユザーの「ユザーページ」を確認する事で読書の幅を広げましょう。
+= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f|
+  = render "devise/shared/error_messages", resource: resource
+  .field
+    = f.label :nickname, "ニックネーム"
+    br
+    = f.text_field :nickname, autofocus: true
+  .field
+    = f.label :email, "メールアドレス"
+    br
+    = f.email_field :email, autofocus: true, autocomplete: "email"
+  .field
+    = f.label :password, "パスワード"
+    - if @minimum_password_length
+      em
+        | (
+        = @minimum_password_length
+        |  文字以上で入力をお願いします。)
+    br
+    = f.password_field :password, autocomplete: "new-password"
+  .field
+    = f.label :password_confirmation, "パスワード(確認用)"
+    br
+    = f.password_field :password_confirmation, autocomplete: "new-password"
+  .actions
+    = f.submit "登録する"
+= render "devise/shared/links"

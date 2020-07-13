@@ -1,0 +1,42 @@
+h4
+  | 検索結果:
+  = books_full.count
+  | 件
+p
+  | ★商品画像やタイトルをクリックすると、書籍の詳細ページに移動します。
+table.table.table-striped
+  thead
+    tr
+      th
+        | 商品画像
+      th
+        | 書籍タイトル / カナ
+      th
+        | 著者名 / カナ
+      th
+        | 出版社名
+      th
+        | 発売日
+    tr
+
+  - books.each do |item|
+    tbody
+      tr
+        td
+          = link_to (image_tag(item.medium_image_url)), book_path(item.isbn)
+        td
+          = link_to book_path(item.isbn) do
+            = item.title
+            br
+            = item.title_kana
+        td
+          = item.author
+          br
+          = item.author_kana
+        td
+          = item.publisher_name
+        td
+          = item.sales_date
+      tr
+
+  = paginate books, class: "paginate"

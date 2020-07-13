@@ -1,0 +1,10 @@
+h4
+  | 書籍レビュー一覧
+div
+  = @user.nickname
+  | さんのレビュー
+= render partial: "users/link_index", locals: { reviews: @reviews, recommended: @recommended, recommended_user: @recommended_user, books: @books, user: @user }
+p
+  | ★商品画像やタイトルをクリックすると、書籍の詳細ページに移動します。
+#my-review-field
+  = render partial: "reviews/reviews", locals: { reviews: @reviews }
