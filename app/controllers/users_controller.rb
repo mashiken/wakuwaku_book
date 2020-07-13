@@ -10,7 +10,7 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
-    #退会済ユーザーページを閲覧しようとした時、マイページへ。
+    # 退会済ユーザーページを閲覧しようとした時、マイページへ。
     @reviews = Review.where(user_id: params[:id])
     @recommended = RecommendedBook.where(user_id: params[:id])
     @recommended_user = RecommendedBook.where(recommended_user_id: params[:id])
@@ -19,7 +19,7 @@ class UsersController < ApplicationController
   end
 
   def edit
-    #自分以外のユーザーが編集する事は不可
+    # 自分以外のユーザーが編集する事は不可
     if params[:id].to_i == current_user.id
       @user = current_user
     else
@@ -30,10 +30,10 @@ class UsersController < ApplicationController
   def update
     @user = User.find(params[:id])
     if @user.update(user_params)
-       flash[:notice] = "プロフィール編集完了しました。"
+      flash[:notice] = 'プロフィール編集完了しました。'
       redirect_to user_path(current_user.id)
     else
-      render "edit"
+      render 'edit'
     end
   end
 
@@ -42,13 +42,13 @@ class UsersController < ApplicationController
 
   def hide
     @user = current_user
-    #is_vaildカラムをfalseへupdate
+    # is_vaildカラムをfalseへupdate
     if @user.update(is_valid: false)
-       reset_session
-       flash[:notice] = "ありがとうございました。またのご利用を心よりお待ちしております。"
-       redirect_to root_path
+      reset_session
+      flash[:notice] = 'ありがとうございました。またのご利用を心よりお待ちしております。'
+      redirect_to root_path
     else
-       render user_path
+      render user_path
     end
   end
 
@@ -59,10 +59,8 @@ class UsersController < ApplicationController
   end
 
   def user_is_valid?
-    #退会済ユーザーに関するビューを表示させない
+    # 退会済ユーザーに関するビューを表示させない
     user = User.find(params[:id])
-    if user.is_valid == false
-      redirect_to user_path(current_user)
-    end
+    redirect_to user_path(current_user) if user.is_valid == false
   end
 end

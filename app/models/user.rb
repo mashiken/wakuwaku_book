@@ -12,11 +12,11 @@ class User < ApplicationRecord
   has_many :book_shelves
   attachment :image
 
-  validates :nickname,  presence: true, length: {maximum: 50, minimum: 2}
+  validates :nickname, presence: true, length: { maximum: 50, minimum: 2 }
   validates :profile, length: { maximum: 600 }
   validates :email, uniqueness: true
 
   def active_for_authentication?
-    super && (self.is_valid == true)
+    super && (is_valid == true)
   end
 end
