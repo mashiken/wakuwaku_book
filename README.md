@@ -18,8 +18,7 @@ PFを作成するに当たり、これまで学習して来たBookersやnaganoca
 を図れるようなサイトを作成したいと考えた。
 
 ### ターゲットユーザ
-コアな読書好き。学生等、または全年齢対象。小学生やお年寄りも閲覧する事を考え、なるべく
-情報量少なくスッキリとした分かりやすいレイアウトを考える。
+コアな読書好き。学生等、または全年齢対象。なるべく情報量少なくスッキリとした分かりやすいレイアウトを考える。
 
 ### 主な利用シーン
 卒業論文執筆の大学生が関連書籍のレビューを見て書籍の読み方の切り口を見つける。
@@ -29,9 +28,6 @@ PFを作成するに当たり、これまで学習して来たBookersやnaganoca
 ## 設計書
 https://drive.google.com/file/d/1Mxy-YPI8GNH0gKxb9xhueWqHShrQ4DVR/view?usp=sharing
 
-※AmazonAPI取得中で未だ実装経験が無い為、イメージが湧かず粗雑になってしまいました。
-このPFの肝になる部分の為、Qiitaを読みながら簡単なアプリを先に作成し、理解を深めてからもう一度正式な物を
-提出したいと思います。
 
 ### 機能一覧
 https://docs.google.com/spreadsheets/d/1aWCEGCZsf5oFtdG8h8u6K6HNJ_xvZYztpkuitee6YUI/edit#gid=791052594
