@@ -1,0 +1,53 @@
+.row
+  - if flash[:notice]
+    .alert.alert-success
+      p
+        = flash[:notice]
+  .col-lg-5.col-sm-12
+    .top-image-field
+      #theTarget
+        div
+          = image_tag asset_path("img1.jpg", alt: "book-image"), class: "size"
+        div
+          = image_tag asset_path("img2.jpg", alt: "library-image"), class: "size"
+        div
+          = image_tag asset_path("img3.jpg", alt: "kids-image"), class: "size"
+        div
+          = image_tag asset_path("img4.jpg", alt: "Consultation-image"), class: "size"
+  .col-lg-6.col-lg-offset-1.col-sm-12
+    .row.about
+      h2
+        | ようこそ、わくわくブックへ
+      p
+        | 1.会員登録無しで書籍の検索とレビューを元に購入が出来ます。
+      p
+        | 2.会員登録する事でマイページを持つ事が出来、書籍に対するレビューが可能です。
+      p
+        | 3.また、自分が読んだ書籍を他のユザーに対してオススメする事も出来ます。
+      p
+        | 4.同時にマイページを充実させる事により、他のユザーからあなたに合った書籍をオススメされる場合もあります。
+    .row.search
+      h3
+        | さっそく検索する
+      p
+        | 下のフォームより、検索してみましょう！
+      p
+        | 1.ラジオボタンにて、「書籍タイトル」か「著者名」のどちらかに、チェックを入れましょう。
+      p
+        | 2.フォーム空欄に検索したいワードを打ち込み、検索ボタンを押しましょう。
+    .row.search-from
+      = form_with url: books_path, method: :get, local: true do |form|
+        = form.radio_button :search_condition, :title,  class:"radio_button"
+        |  　
+        = form.label :search_condition, "書籍タイトルから検索", {value: :title, style: "display: inline-block;", class:"radio_button_text"}
+        = form.radio_button :search_condition, :author,  class:"radio_button"
+        |  　
+        = form.label :search_condition, "著者名から検索", {value: :author, style: "display: inline-block;", class:"radio_button_text"}
+        = form.text_field :keyword, class: "form-control"
+        div[style="padding:10px"]
+          = form.submit '検索', class: "btn btn-lg btn-success "
+    .row.login
+      h3
+        | さっそく会員登録/ログインをする
+      = link_to "会員登録", new_user_registration_path, class: "btn btn-success col-xs-5", style: "color:white;"
+      = link_to "ログイン", new_user_session_path, class: "btn btn-info col-xs-5 col-xs-offset-1", style: "color:white;"

@@ -1,0 +1,31 @@
+.table-responsive
+  table.table.table-hover.table-inverse
+    thead
+      tr
+        th
+          | 投稿ユーザー
+        th
+          | タイトル
+        th
+          | 本文
+        th
+          | 投稿日
+        th
+    - reviews.each do |review|
+      tbody
+        tr
+          td
+            = link_to user_path(review.user) do
+              = attachment_image_tag review.user, :image, size: "100x100", format: "jpg", fallback:"no_image.jpg"
+              br
+              = review.user.nickname
+          td
+            = review.title
+          td
+            = review.text
+          td
+            = review.created_at.strftime('%Y/%m/%d %H:%M')
+          td
+            - if current_user == review.user
+              = link_to '削除する',  review_path(review), method: :delete, remote: true, class: "btn btn-sm btn-danger", style: "color:white;"
+    = paginate reviews, class: "paginate"

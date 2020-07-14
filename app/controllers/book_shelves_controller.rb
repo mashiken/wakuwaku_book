@@ -9,7 +9,7 @@ class BookShelvesController < ApplicationController
     book_shelves.each do |book_shelf|
       if book_shelf.book_id == @book_shelf.book_id
         flash[:notice] = '既に同じ書籍が本棚に追加されている為、追加出来ませんでした。'
-        redirect_to book_path(@book_shelf.book_id.to_i)
+        redirect_to book_path(@book_shelf.book_id.to_i) and return
       end
     end
 

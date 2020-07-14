@@ -1,0 +1,17 @@
+h2
+  | 書籍検索
+= form_with url: books_path, method: :get, local: true do |form|
+  = form.radio_button :search_condition, :title,  class:"radio_button"
+  |  　
+  = form.label :search_condition, "書籍タイトルから検索", {value: :title, style: "display: inline-block;", class:"radio_button_text"}
+  = form.radio_button :search_condition, :author,  class:"radio_button"
+  |  　
+  = form.label :search_condition, "著者名から検索", {value: :author, style: "display: inline-block;", class:"radio_button_text"}
+  = form.text_field :keyword, class: "form-control"
+  div[style="padding:10px"]
+    = form.submit '検索', class: "btn btn-lg btn-success "
+- if @books.present?
+  = render "books/book", books: @books, books_full: @books_full
+- else
+  p.text-danger
+    = flash[:notice]

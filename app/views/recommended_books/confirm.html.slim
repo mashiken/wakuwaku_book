@@ -1,0 +1,46 @@
+h4
+  | オススメ書籍を選ぶ
+.row.recommend_book_choice_field
+  = form_with url: confirm_recommended_book_path(@recommended_user), method: :get, local: true do |form|
+    .col-lg-11.col-xs-8.row.row-no-gutters
+      h5
+        = @recommended_user.nickname
+        | さんへ
+      = form.radio_button :recommended, :shilf,  class:"radio_button col-lg-1 col-xs-2"
+      |  　
+      = form.label :recommended, "本棚書籍からオススメ", {value: :title, style: "display: inline-block;", class:"radio_button_text col-lg-2 col-xs-9"}
+      = form.radio_button :recommended, :review,  class:"radio_button col-lg-1 col-xs-2"
+      |  　
+      = form.label :recommended, "レビュー一覧からオススメ", {value: :review, style: "display: inline-block;", class:"radio_button_text col-lg-2 col-xs-9"}
+      = form.radio_button :recommended, :search,  class:"radio_button col-lg-1 col-xs-2"
+      |  　
+      = form.label :recommended, "オススメしたい書籍を検索する", {value: :search, style: "display: inline-block;", class:"radio_button_text col-lg-4 col-xs-9"}
+    .col-lg-1.col-xs-4.button_position
+      = form.submit '検索', class: "btn btn-lg btn-success "
+.recommend_book_search_field
+  - if params[:recommended] == "shilf"
+    = render partial: "recommended_books/book_shelves", locals: { recommended_user: @recommended_user, book_shelves: @book_shelves }
+  - elsif params[:recommended] == "review"
+    = render partial: "recommended_books/review", locals: { recommended_user: @recommended_user, reviews: @reviews }
+  - elsif params[:recommended] == "search"
+    h5[style="font-weight:bold"]
+      | オススメ書籍を検索する場合
+    p
+      | ラジオボタンにて、「書籍タイトル」か「著者名」のどちらかにチェックを入れ、フォーム空欄に検索したいワードを打ち込み、検索ボタンを押しましょう。
+    = form_with url: confirm_recommended_book_path(@recommended_user), method: :get, local: true do |form|
+      = form.radio_button :search_condition, :title,  class:"radio_button"
+      |  　
+      = form.label :search_condition, "書籍タイトル", {value: :title, style: "display: inline-block;", class:"radio_button_text"}
+      = form.radio_button :search_condition, :author,  class:"radio_button"
+      |  　
+      = form.label :search_condition, "著者名", {value: :author, style: "display: inline-block;", class:"radio_button_text"}
+      |  　　
+      = form.hidden_field :recommended, :value => "search"
+      = form.text_field :keyword, class: "form-control"
+      div[style="padding:10px"]
+        = form.submit '検索', class: "btn btn-lg btn-success "
+    - if @books.present?
+      = render partial: "recommended_books/search", locals: { recommended_user: @recommended_user, books: @books,books_full: @books_full }
+    - else
+      p.text-danger
+        = flash[:notice]

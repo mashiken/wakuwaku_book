@@ -1,0 +1,74 @@
+- if flash[:notice]
+  .alert.alert-danger
+    p
+      = flash[:notice]
+h2
+  | 書籍詳細
+- @book_details.each do |book_detail|
+  .row
+    .col-md-4.col-xs-12
+      = image_tag(book_detail.large_image_url)
+      .book-shelves-form
+        - if user_signed_in?
+          = form_with model: @book_shelf, method: :post, local: true do |f|
+            = f.hidden_field :book_id, :value => book_detail.isbn
+            = f.submit "本棚へ追加", lass:"btn btn-success"
+      div[clas="rakuten-link-field"]
+        = link_to "楽天で本を買う" , book_detail.item_url, class: "btn btn-sm btn-success rakuten-link-field", style: "color:white;"
+    .col-md-8.col-xs-12.book-show-field
+      .row
+        table.table.table-hover.table-inverse
+          tbody
+            tr
+              td.col-xs-4
+                | 書籍タイトル
+              td.col-xs-8
+                = book_detail.title
+                | /
+                = book_detail.title_kana
+            tr
+              td.col-xs-4
+                | 多巻物収録内容
+              td.col-xs-8
+                = book_detail.contents
+            tr
+              td.col-xs-4
+                | 著者名
+              td.col-xs-8
+                = book_detail.author
+                | /
+                = book_detail.author_kana
+            tr
+              td.col-xs-4
+                | 出版社名
+              td.col-xs-8
+                = book_detail.publisher_name
+            tr
+              td.col-xs-4
+                | 書籍サイズ
+              td.col-xs-8
+                = book_detail.size
+            tr
+              td.col-xs-4
+                | 説明文
+              td.col-xs-8
+                = book_detail.item_caption
+            tr
+              td.col-xs-4
+                | 発売日
+              td.col-xs-8
+                = book_detail.sales_date
+.row
+  - if user_signed_in?
+    .review-form
+      h4
+        | レビュー投稿フォーム
+      = render partial: "books/new_review", locals: { book_details: @book_details, review: @review }
+  h4
+    | レビュー一覧
+  #review-index
+    - if @book_reviews.present?
+      = render partial: "books/reviews", locals: { reviews: @book_reviews }
+    - else
+      h3[style="color:red"]
+        | 現在、投稿レビューはありません。

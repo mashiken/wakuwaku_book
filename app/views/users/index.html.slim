@@ -1,0 +1,35 @@
+h4
+  | ユザー一覧
+.table-responsive
+  p
+    | ★ユーザー画像をクリックすると、そのユーザーのページに移動します。
+  table.table.table-hover.table-inverse
+    thead
+      tr
+        th.col-xs-4[colspan="2"]
+          | ユーザー名
+        th.col-xs-1
+          | 性別
+        th.col-xs-1
+          | 年齢
+        th.col-xs-2
+          | 職業
+        th.col-xs-4
+          | プロフィール
+    - @users.each do |user|
+      = link_to(user_path(user.id), class: 'list-content') do
+        tbody
+          tr
+            td.col-xs-2
+              = link_to ( attachment_image_tag user, :image, size: "100x100", format: "jpg", fallback:"no_image.jpg" ), user_path(user)
+            td.col-xs-2
+              = link_to user.nickname, user_path(user)
+            td.col-xs-1
+              = user.gender
+            td.col-xs-1
+              = user.age
+            td.col-xs-2
+              = user.profession
+            td.col-xs-4
+              = user.profile
+    = paginate @users, class: "paginate"

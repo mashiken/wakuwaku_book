@@ -1,0 +1,60 @@
+.table-responsive
+  table.table.table-hover.table-inverse
+    thead
+      tr
+        th
+          | 書籍画像
+        th
+          | 書籍タイトル / カナ
+        th
+          | 著者名 / カナ
+        th
+          | 出版社名
+        th
+          | いいね数
+        th
+          | レビュー文
+        th
+          | 投稿日
+      tr
+
+    |  　
+    - reviews.each do |review|
+      |  　　
+      - books = RakutenWebService::Books::Book.search(isbn: review.book_id.to_i)
+      |  　　　
+      - books.each do |item|
+        tbody
+          tr
+            td
+              = link_to image_tag(item.medium_image_url), book_path(item.isbn)
+            td
+              = link_to item.title, book_path(item.isbn)
+              br
+              = link_to item.title_kana, book_path(item.isbn)
+            td
+              = item.author
+              br
+              = item.author_kana
+            td
+              = item.publisher_name
+            td
+              - if review.favorited_by?(current_user)
+                = link_to review_favorites_path(review), method: :delete, remote: true do
+                  i.fa.fa-heart[aria-hidden="true" style="color: red;"]
+                  = review.favorites.count
+              - else
+                = link_to review_favorites_path(review), method: :post, remote: true do
+                  i.fa.fa-heart-o[aria-hidden="true"]
+                  = review.favorites.count
+            td
+              |  タイトル : 
+              = review.title
+              br
+              |  本文 : 
+              = review.text
+            td
+              = review.created_at.strftime('%Y/%m/%d %H:%M')
+          tr
+
+    = paginate reviews, class: "paginate"

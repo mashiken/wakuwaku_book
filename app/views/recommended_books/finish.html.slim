@@ -1,0 +1,41 @@
+h4
+  | オススメ書籍 確認フォーム
+h5[style="font-weight:bold"]
+  = @recommended_user.nickname
+  | さんへ
+- if @recommended_book.errors.any?
+  .alert.alert-danger
+    div
+      h2
+        = pluralize(@recommended_book.errors.count, "件")
+        |  のエラーです。
+      ul
+        - @recommended_book.errors.full_messages.each do |message|
+          li
+            = message
+= form_with model: @recommended_book , method: :post, local: true do |form|
+  .row
+    .col-md-4.col-xs-12
+      - @book_details.each do |book_detail|
+        = image_tag(book_detail.large_image_url)
+        br
+        .recommend-field
+          = book_detail.title
+          = book_detail.title_kana
+        = form.hidden_field :book_id, :value => book_detail.isbn
+    .col-md-8.col-xs-12
+      .recommend-field
+        p[style="font-weight:bold"]
+          | おすすめタイトル
+        em
+          | 2文字以上、50文字以内でお願いします。
+        = form.text_field :title, autofocus: true
+      .recommend-field
+        p[style="font-weight:bold"]
+          | おすすめ文
+        em
+          | 10文字以上、600文字以内でお願いします。
+        = form.text_area :text, autofocus: true
+      = form.hidden_field :recommended_user_id, :value => @recommended_user.id
+      p
+        = form.submit '送信する', class: "btn btn-success"

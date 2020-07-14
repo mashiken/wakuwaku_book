@@ -1,0 +1,44 @@
+.table-responsive
+  p
+    | ★商品画像やタイトルをクリックすると、書籍の詳細ページに移動します。
+  p
+    | ★ユーザー画像をクリックすると、そのユーザーのページに移動します。
+  table.table.table-hover.table-inverse.order_table_text
+    thead
+      tr
+        th
+          | 書籍確定
+        th
+          | MY本棚 書籍画像
+        th
+          | 書籍タイトル / カナ
+        th
+          | 著者名 / カナ
+        th
+          | 出版社名
+        th
+          | 発売日
+      tr
+
+    - book_shelves.each do |book_shelf|
+      - books = RakutenWebService::Books::Book.search(isbn: book_shelf.book_id.to_i)
+      - books.each do |item|
+        tbody
+          tr
+            td
+              = link_to "書籍決定",  finish_recommended_book_path(id: recommended_user.id, book_id: book_shelf.book_id), class: "btn btn-md btn-success", style: "color:white;"
+            td
+              = link_to image_tag(item.medium_image_url), book_path(item.isbn)
+            td
+              = link_to item.title, book_path(item.isbn)
+              br
+              = link_to item.title_kana, book_path(item.isbn)
+            td
+              = item.author
+              br
+              = item.author_kana
+            td
+              = item.publisher_name
+            td
+              = item.sales_date
+          tr
