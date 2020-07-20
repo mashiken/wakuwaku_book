@@ -41,6 +41,6 @@
           = link_to "プロフィール情報を編集する", edit_user_path(current_user), class: "btn btn-sm btn-info", style: "color:white;"
           = link_to "wakuwaku-bookを退会する", confirm_users_path, class: "btn btn-sm btn-warning", style: "color:white;"
         - else
-          = link_to "このユザーに書籍をオススメする", confirm_recommended_book_path(@user.id), class: "btn btn-sm btn-primary", style: "color:white;"
+          = link_to "このユーザーに書籍をオススメする", confirm_recommended_book_path(@user.id), class: "btn btn-sm btn-primary", style: "color:white;"
   #bookshelves.bookshelves
     = render partial: "users/book_shelves", locals: { book_shelves: @book_shelves }
