@@ -60,4 +60,4 @@
 #     # password: "please use keys"
 #   }
 
-server '54.249.195.65', user: 'ec2-user', roles: %w{app web db}
+server 'pf-deploy-alb4-297578156.ap-northeast-1.elb.amazonaws.com', user: 'ec2-user', roles: %w{app web db}
