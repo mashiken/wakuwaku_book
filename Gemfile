@@ -46,6 +46,11 @@ group :development, :test do
   gem 'capistrano-rails'
   gem 'capistrano3-puma'
   gem 'capistrano-rbenv'
+
+  gem 'selenium-webdriver'
+  gem 'rspec-rails'
+  gem 'factory_bot_rails'
+  gem 'rails-controller-testing'
 end
 
 group :development do
@@ -57,10 +62,6 @@ group :development do
   gem 'spring-watcher-listen', '~> 2.0.0'
   gem 'pry-byebug'
   gem 'capybara', '>= 2.15'
-  gem 'selenium-webdriver'
-  gem 'rspec-rails'
-  gem 'factory_bot_rails'
-  gem 'rails-controller-testing'
 end
 
 group :test do
