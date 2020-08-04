@@ -22,17 +22,9 @@ class ReviewsController < ApplicationController
     if @review.save
       @reviews = Review.where(book_id: @review.book_id.to_i).page(params[:page]).reverse_order.per(10)
       @review = Review.new
-      # books/create.js.erbへ非同期処理
-      respond_to do |format|
-        format.js { render file: '/books/create.js.erb' }
-      end
     else
       # books/showへ非同期で必要
       @reviews = Review.where(book_id: @review.book_id.to_i).page(params[:page]).reverse_order.per(10)
-      # books/create.js.erbへ非同期処理
-      respond_to do |format|
-        format.js { render file: '/books/create.js.erb' }
-      end
     end
   end
 
@@ -43,10 +35,6 @@ class ReviewsController < ApplicationController
     @book_details = RakutenWebService::Books::Book.search(isbn: @review.book_id.to_i)
     @reviews = Review.where(book_id: @review.book_id.to_i).page(params[:page]).per(10)
     @book_shelf = BookShelf.new
-
-    respond_to do |format|
-      format.js { render file: '/books/destroy.js.erb' }
-    end
   end
 
   private

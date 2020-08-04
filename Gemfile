@@ -46,7 +46,7 @@ group :development, :test do
   gem 'capistrano-rails'
   gem 'capistrano3-puma'
   gem 'capistrano-rbenv'
-
+  gem 'capybara', '>= 2.15'
   gem 'selenium-webdriver'
   gem 'rspec-rails'
   gem 'factory_bot_rails'
@@ -61,13 +61,13 @@ group :development do
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
   gem 'pry-byebug'
-  gem 'capybara', '>= 2.15'
 end
 
 group :test do
   # Adds support for Capybara system testing and selenium driver
   # Easy installation and use of chromedriver to run system tests with Chrome
-  gem 'chromedriver-helper'
+  #gem 'chromedriver-helper'
+  #gem 'webdrivers', '~> 3.0'
 end
 
 group :production do
