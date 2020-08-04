@@ -46,9 +46,12 @@ group :development, :test do
   gem 'capistrano-rails'
   gem 'capistrano3-puma'
   gem 'capistrano-rbenv'
+
   gem 'capybara', '>= 2.15'
   gem 'selenium-webdriver'
   gem 'rspec-rails'
+  gem 'webdrivers', '~> 4.0'
+
   gem 'factory_bot_rails'
   gem 'rails-controller-testing'
 end

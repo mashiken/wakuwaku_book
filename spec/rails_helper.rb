@@ -1,8 +1,7 @@
 # This file is copied to spec/ when you run 'rails generate rspec:install'
 require 'devise'
 require File.expand_path("spec/support/controller_macros.rb")
-
-require 'spec_helper'
+require File.expand_path("spec/support/capybara.rb")
 ENV['RAILS_ENV'] ||= 'test'
 require File.expand_path('../config/environment', __dir__)
 # Prevent database truncation if the environment is production
@@ -20,7 +19,7 @@ require 'rspec/rails'
 #
 # The following line is provided for convenience purposes. It has the downside
 # of increasing the boot-up time by auto-requiring all files in the support
-# directory. Alternatively, in the individual `*_spec.rb` files, manually
+# directory. Alternatively, in the individual `*_spec.rb` files, manuallys
 # require only the support files necessary.
 #
 # Dir[Rails.root.join('spec', 'support', '**', '*.rb')].sort.each { |f| require f }
@@ -67,4 +66,10 @@ RSpec.configure do |config|
   # arbitrary gems may also be filtered via:
   # config.filter_gems_from_backtrace("gem name")
   config.include FactoryBot::Syntax::Methods
+  config.before(:each) do |example|
+    if example.metadata[:type] == :system
+      driven_by :selenium, using: :headless_chrome, screen_size: [1280, 800], options: { args: ["headless", "disable-gpu", "no-sandbox", "disable-dev-shm-usage"] }
+    end
+  end
+
 end
