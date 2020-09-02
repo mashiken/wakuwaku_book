@@ -1,3 +1,2 @@
 $(".review-form").html("<%= j(render partial: 'books/new_review', locals: { book_details: @book_details, review: @review }) %>")
-
 $("#review-index").html("<%= j(render 'books/reviews', reviews: @reviews) %>")
