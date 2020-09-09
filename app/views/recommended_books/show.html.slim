@@ -3,7 +3,7 @@ h4
 div
   = @user.nickname
   | さんのおすすめ書籍
-　= render partial: "users/link_index", locals: { reviews: @reviews, recommended: @recommended, recommended_user: @recommended_user, books: @books, user: @user }
+  = render partial: "users/link_index", locals: { reviews: @reviews, recommended: @recommended, recommended_user: @recommended_user, books: @books, user: @user }
 
   / ユーザーページから見た「オススメした数」、「オススメされた数」でrender先を分ける
   - if params[:recommended_patarn] == "1"

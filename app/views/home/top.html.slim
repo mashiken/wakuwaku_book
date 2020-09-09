@@ -1,8 +1,4 @@
 .row
-  - if flash[:notice]
-    .alert.alert-success
-      p
-        = flash[:notice]
   .col-lg-5.col-sm-12
     .top-image-field
       #theTarget
@@ -35,17 +31,10 @@
         | 1.ラジオボタンにて、「書籍タイトル」か「著者名」のどちらかに、チェックを入れましょう。
       p
         | 2.フォーム空欄に検索したいワードを打ち込み、検索ボタンを押しましょう。
+    / 書籍検索フォーム
     .row.search-from
       = form_with url: books_path, method: :get, local: true do |form|
-        = form.radio_button :search_condition, :title,  class:"radio_button"
-        |  　
-        = form.label :search_condition, "書籍タイトルから検索", {value: :title, style: "display: inline-block;", class:"radio_button_text"}
-        = form.radio_button :search_condition, :author,  class:"radio_button"
-        |  　
-        = form.label :search_condition, "著者名から検索", {value: :author, style: "display: inline-block;", class:"radio_button_text"}
-        = form.text_field :keyword, class: "form-control"
-        div[style="padding:10px"]
-          = form.submit '検索', class: "btn btn-lg btn-success "
+         = render partial: "shared/books_serch_box", locals: { form: form }
     .row.login
       h3
         | さっそく会員登録/ログインをする

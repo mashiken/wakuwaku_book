@@ -44,6 +44,10 @@ html
                   li
                     = link_to 'ログイン', new_user_session_path
       .container
+        - if flash[:notice]
+          .alert.alert-success
+            p
+              = flash[:notice]
         = yield
       footer
         #header

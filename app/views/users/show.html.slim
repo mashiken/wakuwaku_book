@@ -1,46 +1,41 @@
 - if @user.is_valid == false
   h4.text-danger
     | このユーザーは退会となりました。
-- else
-  - if flash[:notice]
-    .alert.alert-success
-      p
-        = flash[:notice]
+h4
+  | 登録情報
+= render partial: "users/link_index",locals: { reviews: @reviews, recommended: @recommended, recommended_user: @recommended_user, books: @books, user: @user }
+.profile-info
   h4
-    | 登録情報
-  = render partial: "users/link_index",locals: { reviews: @reviews, recommended: @recommended, recommended_user: @recommended_user, books: @books, user: @user }
-  .profile-info
-    h4
-      | プロフィール
-    .row.profile-field
-      .col-sm-12.col-lg-2.user_iamge
-        = attachment_image_tag @user, :image, size: "200x180", format: "jpg", fallback:"no_image.jpg"
-      .col-sm-12.col-lg-offset-1.col-lg-9
-        table.table.table-inverse
-          tr
-            td
-              | 名前 : 
-              = @user.nickname
-          tr
-            td
-              | 性別 : 
-              = @user.gender
-          tr
-            td
-              | 年齢 : 
-              = @user.age
-          tr
-            td
-              | 職業 : 
-              = @user.profession
-          tr
-            td
-              | プロフィール : 
-              = @user.profile
-        - if @user.id == current_user.id
-          = link_to "プロフィール情報を編集する", edit_user_path(current_user), class: "btn btn-sm btn-info", style: "color:white;"
-          = link_to "wakuwaku-bookを退会する", confirm_users_path, class: "btn btn-sm btn-warning", style: "color:white;"
-        - else
-          = link_to "このユーザーに書籍をオススメする", confirm_recommended_book_path(@user.id), class: "btn btn-sm btn-primary", style: "color:white;"
-  #bookshelves.bookshelves
-    = render partial: "users/book_shelves", locals: { book_shelves: @book_shelves }
+    | プロフィール
+  .row.profile-field
+    .col-sm-12.col-lg-2.user_iamge
+      = attachment_image_tag @user, :image, size: "200x180", format: "jpg", fallback:"no_image.jpg"
+    .col-sm-12.col-lg-offset-1.col-lg-9
+      table.table.table-inverse
+        tr
+          td
+            | 名前 : 
+            = @user.nickname
+        tr
+          td
+            | 性別 : 
+            = @user.gender
+        tr
+          td
+            | 年齢 : 
+            = @user.age
+        tr
+          td
+            | 職業 : 
+            = @user.profession
+        tr
+          td
+            | プロフィール : 
+            = @user.profile
+      - if @user.id == current_user.id
+        = link_to "プロフィール情報を編集する", edit_user_path(current_user), class: "btn btn-sm btn-info", style: "color:white;"
+        = link_to "wakuwaku-bookを退会する", confirm_users_path, class: "btn btn-sm btn-warning", style: "color:white;"
+      - else
+        = link_to "このユーザーに書籍をオススメする", confirm_recommended_book_path(@user.id), class: "btn btn-sm btn-primary", style: "color:white;"
+#bookshelves.bookshelves
+  = render partial: "users/book_shelves", locals: { book_shelves: @book_shelves }
