@@ -1,14 +1,13 @@
 h4
   | おすすめ一覧
-- if params[:recommended_patarn] == "1"
-  div
-    = @user.nickname
-    | さんのおすすめ書籍
-  = render partial: "users/link_index", locals: { reviews: @reviews, recommended: @recommended, recommended_user: @recommended_user, books: @books, user: @user }
-  = render partial: "recommended_books/user", locals: { recommended_book: @recommended_book}
-- elsif params[:recommended_patarn] == "2"
-  div
-    = @user.nickname
-    | さんへのおすすめ書籍
-  = render partial: "users/link_index", locals: { reviews: @reviews, recommended: @recommended, recommended_user: @recommended_user, books: @books, user: @user }
-  = render partial: "recommended_books/recommended_user", locals: { recommended_book: @recommended_book}
+div
+  = @user.nickname
+  | さんのおすすめ書籍
+　= render partial: "users/link_index", locals: { reviews: @reviews, recommended: @recommended, recommended_user: @recommended_user, books: @books, user: @user }
+
+  / ユーザーページから見た「オススメした数」、「オススメされた数」でrender先を分ける
+  - if params[:recommended_patarn] == "1"
+    = render partial: "recommended_books/user", locals: { recommended_book: @recommended_book}
+  - elsif params[:recommended_patarn] == "2"
+    = render partial: "recommended_books/recommended_user", locals: { recommended_book: @recommended_book}
+
