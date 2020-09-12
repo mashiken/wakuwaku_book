@@ -3,6 +3,7 @@ h4
 .table-responsive
   p
     | ★ユーザー画像をクリックすると、そのユーザーのページに移動します。
+  = paginate @users, class: "paginate"
   table.table.table-hover.table-inverse
     thead
       tr
@@ -32,4 +33,4 @@ h4
               = user.profession
             td.col-xs-4
               = user.profile
-    = paginate @users, class: "paginate"
+  = paginate @users, class: "paginate"

@@ -1,4 +1,5 @@
 .table-responsive
+  = paginate reviews, class: "paginate"
   table.table.table-hover.table-inverse
     thead
       tr
@@ -29,4 +30,4 @@
             - if current_user == review.user
               = link_to '削除する',  review_path(review), method: :delete, remote: true,id: "review_delete_submit",
               class: "btn btn-sm btn-danger", style: "color:white;"
-    = paginate reviews, class: "paginate"
+  = paginate reviews, class: "paginate"

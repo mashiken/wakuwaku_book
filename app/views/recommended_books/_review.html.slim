@@ -3,6 +3,7 @@
     | ★商品画像やタイトルをクリックすると、書籍の詳細ページに移動します。
   p
     | ★オススメする書籍が決定したら、緑の「書籍決定」ボタンをクリックしてください。
+  = paginate reviews, class: "paginate"
   table.table.table-hover.table-inverse.order_table_text
     thead
       tr
@@ -50,4 +51,4 @@
               = review.text
           tr
 
-    = paginate reviews, class: "paginate"
+  = paginate reviews, class: "paginate"

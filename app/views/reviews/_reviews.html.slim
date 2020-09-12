@@ -1,5 +1,6 @@
 
 .table-responsive
+  = paginate reviews, class: "paginate"
   table.table.table-hover.table-inverse
     thead
       tr
@@ -19,11 +20,11 @@
           | 投稿日
       tr
 
-    |  　
+    |
     - reviews.each do |review|
-      |  　　
+      |
       - books = RakutenWebService::Books::Book.search(isbn: review.book_id.to_i)
-      |  　　　
+      |
       - books.each do |item|
         tbody
           tr
@@ -49,13 +50,13 @@
                   i.fa.fa-heart-o[aria-hidden="true"]
                   = review.favorites.count
             td
-              |  タイトル : 
+              |  タイトル :
               = review.title
               br
-              |  本文 : 
+              |  本文 :
               = review.text
             td
               = review.created_at.strftime('%Y/%m/%d %H:%M')
           tr
 
-    = paginate reviews, class: "paginate"
+  = paginate reviews, class: "paginate"

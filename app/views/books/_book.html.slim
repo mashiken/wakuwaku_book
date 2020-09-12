@@ -4,6 +4,7 @@ h4
   | 件
 p
   | ★商品画像やタイトルをクリックすると、書籍の詳細ページに移動します。
+= paginate books, class: "paginate"
 table.table.table-striped
   thead
     tr
@@ -18,7 +19,6 @@ table.table.table-striped
       th
         | 発売日
     tr
-
   - books.each do |item|
     tbody
       tr
@@ -39,4 +39,4 @@ table.table.table-striped
           = item.sales_date
       tr
 
-  = paginate books, class: "paginate"
+= paginate books, class: "paginate"

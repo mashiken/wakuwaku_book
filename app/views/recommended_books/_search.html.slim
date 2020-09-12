@@ -7,6 +7,7 @@
     | ★商品画像やタイトルをクリックすると、書籍の詳細ページに移動します。
   p
     | ★オススメする書籍が決定したら、緑の「書籍決定」ボタンをクリックしてください。
+  = paginate books, class: "paginate"
   table.table.table-striped
     thead
       tr
@@ -45,4 +46,4 @@
             = item.sales_date
         tr
 
-    = paginate books, class: "paginate"
+  = paginate books, class: "paginate"

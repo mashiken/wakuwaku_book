@@ -3,6 +3,7 @@ p
 p
   | ★ユーザー画像をクリックすると、そのユーザーのページに移動します。
 .table-responsive
+  = paginate @recommended_book, class: "paginate"
   table.table.table-hover.table-inverse.order_table_text
     thead
       tr
@@ -50,4 +51,4 @@ p
               br
               |  本文 : 
               = recommended_book.text
-    = paginate @recommended_book, class: "paginate"
+  = paginate @recommended_book, class: "paginate"
