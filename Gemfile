@@ -93,3 +93,5 @@ gem 'faker',  '1.7.3'
 gem 'font-awesome-rails'
 gem 'slim-rails'
 gem 'html2slim'
+
+gem 'refile-s3'
