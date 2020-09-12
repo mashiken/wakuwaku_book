@@ -8,7 +8,8 @@ class BookShelvesController < ApplicationController
     #同じ書籍が既に本棚にあった場合追加させない
     book_shelves.each do |book_shelf|
       if book_shelf.book_id == @book_shelf.book_id
-        flash[:notice] = '既に同じ書籍が本棚に追加されている為、追加出来ませんでした。'
+        message = '既に同じ書籍が本棚に追加されている為、追加出来ませんでした。'
+        flash[:danger] = message
         redirect_to book_path(@book_shelf.book_id.to_i) and return
       end
     end
@@ -17,10 +18,12 @@ class BookShelvesController < ApplicationController
     if book_shelves.count <= 9
       @book_shelf.user_id = current_user.id
       @book_shelf.save
-      flash[:notice] = '書籍1冊を本棚に追加しました。'
+      message = '書籍1冊を本棚に追加しました。'
+      flash[:success] = message
       redirect_to user_path(current_user) and return
     else
-      flash[:notice] = '上限10冊を超える為、追加出来ませんでした。'
+      message = '上限10冊を超える為、追加出来ませんでした。'
+      flash[:danger] = message
       redirect_to book_path(@book_shelf.book_id.to_i) and return
     end
   end

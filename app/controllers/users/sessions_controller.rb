@@ -11,12 +11,16 @@ class Users::SessionsController < Devise::SessionsController
   # POST /resource/sign_in
   def create
     super
+    message = 'ログインしました'
+    flash[:success] = message
   end
 
   # DELETE /resource/sign_out
-  # def destroy
-  #   super
-  # end
+   def destroy
+     super
+    message = 'ログアウトしました'
+    flash[:success] = message
+   end
 
   # protected
   # ログイン後マイページへ遷移

@@ -30,7 +30,8 @@ class UsersController < ApplicationController
   def update
     @user = User.find(params[:id])
     if @user.update(user_params)
-      flash[:notice] = 'プロフィール編集完了しました。'
+      message = 'プロフィール編集完了しました。'
+      flash[:success] = message
       redirect_to user_path(current_user.id)
     else
       render 'edit'
@@ -45,7 +46,8 @@ class UsersController < ApplicationController
     # is_vaildカラムをfalseへupdate
     if @user.update(is_valid: false)
       reset_session
-      flash[:notice] = 'ありがとうございました。またのご利用を心よりお待ちしております。'
+      message = 'ありがとうございました。またのご利用を心よりお待ちしております。'
+      flash[:success] = message
       redirect_to root_path
     else
       render user_path

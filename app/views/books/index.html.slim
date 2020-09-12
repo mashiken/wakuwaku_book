@@ -6,6 +6,3 @@ h2
 
 - if @books.present?
   = render "books/book", books: @books, books_full: @books_full
-- else
-  p.text-danger
-    = flash[:notice]

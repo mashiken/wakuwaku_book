@@ -12,6 +12,8 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # POST /resource
   def create
     super
+    message = 'サインアップしました'
+    flash[:success] = message
   end
 
   # GET /resource/edit

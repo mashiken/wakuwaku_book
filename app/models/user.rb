@@ -9,7 +9,7 @@ class User < ApplicationRecord
   has_many :reviews, dependent: :destroy
   has_many :recommended_books
   has_many :favorites, dependent: :destroy
-  has_many :book_shelves
+  has_many :book_shelves, dependent: :destroy
   attachment :image
 
   validates :nickname, presence: true, length: { maximum: 50, minimum: 2 }

@@ -44,10 +44,8 @@ html
                   li
                     = link_to 'ログイン', new_user_session_path
       .container
-        - if flash[:notice]
-          .alert.alert-success
-            p
-              = flash[:notice]
+        - flash.each do |message_type, message|
+          = content_tag(:div, message, class: "alert alert-#{message_type}")
         = yield
       footer
         #header

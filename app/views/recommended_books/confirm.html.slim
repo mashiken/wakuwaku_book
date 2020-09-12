@@ -6,14 +6,14 @@ h4
       h5
         = @recommended_user.nickname
         | さんへ
-      = form.radio_button :recommended, :shilf,  class:"radio_button col-lg-1 col-xs-2"
-      | 
+      = form.radio_button :recommended, :shilf, :checked => true, class:"radio_button col-lg-1 col-xs-2"
+      |
       = form.label :recommended, "本棚書籍からオススメ", {value: :title, style: "display: inline-block;", class:"radio_button_text col-lg-2 col-xs-9"}
       = form.radio_button :recommended, :review,  class:"radio_button col-lg-1 col-xs-2"
-      |  　
+      |
       = form.label :recommended, "レビュー一覧からオススメ", {value: :review, style: "display: inline-block;", class:"radio_button_text col-lg-2 col-xs-9"}
       = form.radio_button :recommended, :search,  class:"radio_button col-lg-1 col-xs-2"
-      |  　
+      |
       = form.label :recommended, "オススメしたい書籍を検索する", {value: :search, style: "display: inline-block;", class:"radio_button_text col-lg-4 col-xs-9"}
     .col-lg-1.col-xs-4.button_position
       = form.submit '検索', class: "btn btn-lg btn-success "
@@ -34,6 +34,3 @@ h4
     / 検索結果があれば書籍検索結果のviewへrender
     - if @books.present?
       = render partial: "recommended_books/search", locals: { recommended_user: @recommended_user, books: @books,books_full: @books_full }
-    - else
-      p.text-danger
-        = flash[:notice]
